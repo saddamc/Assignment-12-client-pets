@@ -1,19 +1,105 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import { FaGithub } from 'react-icons/fa'
+import useAuth from '../../hooks/useAuth'
+import toast from 'react-hot-toast'
+import axios from 'axios'
+import { ImSpinner9 } from "react-icons/im";
+
+
 
 const SignUp = () => {
+  const navigate = useNavigate()
+  const {createUser, signInWithGoogle, updateUserProfile, loginGithub, loading,
+    setLoading, } = useAuth()
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const form = e.target
+    const name = form.name.value
+    const email = form.email.value
+    const password = form.password.value
+    const image = form.image.files[0]
+    console.log(name, email, password)
+    console.log(image)
+
+    const formData = new FormData()
+    formData.append('image', image)
+
+    console.log(formData)
+
+    try{
+      setLoading(true)
+      // 1. Upload image and get image url
+      const {data} = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+        formData
+      )
+
+      console.log(data.data.display_url)
+
+      // const image_url = await imageUpload(image)
+      // console.log(image_url)
+
+      // 2. user Registration
+      const result = await createUser(email, password)
+      console.log(result)
+
+      //  3. Save username and photo in firebase
+      await updateUserProfile(name, data.data.display_url)
+      navigate('/')
+      toast.success('Signup Successful')
+
+    } catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+  }
+
+  // Google SignIn
+  const handleGoogleLogin = async () => {
+    try{
+      setLoading(true)
+      await signInWithGoogle()
+  
+      navigate('/')
+      toast.success('SignIn Successful')
+
+    } catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+  }
+
+  // Google SignIn
+  const handleGithubLogin = async () => {
+    try{
+      setLoading(true)
+      await loginGithub()
+  
+      navigate('/')
+      toast.success('SignIn Successful')
+
+    } catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+  }
+
+
+
   return (
 
-    <div className='flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-500 to-slate-400 '>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gradient-to-r text-white from-indigo-500 to-purple-600'>
+    <div className='flex justify-center items-center min-h-screen bg-[#BFDADA] '>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 
+       bg-[#92B7B7] text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-800 font-bold'>Welcome to Petco</p>
+          <p className='text-sm animate-bounce text-rose-600 font-bold'>Welcome to Petco</p>
         </div>
         <form
-          noValidate=''
-          action=''
-          className='space-y-6 ng-untouched ng-pristine ng-valid'
+         onSubmit={handleSubmit}
+          className='space-y-6 '
         >
           <div className='space-y-4'>
             <div>
@@ -74,11 +160,15 @@ const SignUp = () => {
           </div>
 
           <div>
+      {/* Register Button */}
+
             <button
+            disabled={loading}
               type='submit'
-              className='bg-rose-500 w-full rounded-md py-3 text-white'
+              className='bg-rose-500 w-full rounded-md py-3 font-extrabold shadow-slate-100 shadow-md  hover:bg-black text-white'
             >
-              Continue
+              {loading ? <ImSpinner9 className='animate-spin m-auto' /> : 'Sign Up'}
+              {/* {loading ? <TbFidgetSpinner className='animate-spin m-auto' /> : 'Register'} */}
             </button>
           </div>
         </form>
@@ -87,26 +177,41 @@ const SignUp = () => {
           <p className='px-3 text-sm dark:text-gray-800'>
             Signup with social accounts
           </p>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+          <div className='flex-1 h-px sm:w-16 dark:bg-gray-900'></div>
         </div>
-        <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
-          <FcGoogle size={32} />
+        <div className="  min-w-[255px] min-h-[45px] items-center rounded-md mx-auto mb-10 space-y-2 justify-center text-center">
 
-          <p>Continue with Google</p>
-        </div>
-        <p className='px-6 text-sm text-center text-gray-800'>
+    <div className="flex gap-4 justify-center my-4 ">
+      <div className="text-xl rounded-md shadow-md shadow-slate-100">
+        <button 
+        disabled={loading}
+        onClick={handleGoogleLogin} 
+        className="disabled:cursor-not-allowed bg-yellow-700 w-[120px] h-[40px] px-2 py-1 font-semibold text-white rounded-md flex justify-center text-center items-center hover:bg-green-500 hover:text-black">
+            <FcGoogle></FcGoogle>
+            <span className="ml-1">Google</span></button>
+      </div>
+      <div className="text-xl rounded-md shadow-md shadow-slate-100">
+        <button 
+        onClick={handleGithubLogin} 
+        className="bg-slate-600 w-[120px] h-[40px] px-2 font-semibold text-white rounded-md flex justify-center text-center items-center hover:bg-green-500 hover:text-black">
+            <FaGithub></FaGithub>
+            <span className="ml-1">GitHub</span></button>
+      </div>
+    
+    </div>
+      <p className='px-6 text-sm text-center text-gray-900 '>
           Already have an account?{' '}
           <Link
             to='/login'
-            className='hover:underline hover:text-rose-500 text-white'
+            className='hover:underline hover:text-rose-500 text-blue-700'
           >
             Login
           </Link>
-          .
         </p>
+      </div>
       </div>
     </div>
   )
 }
 
-export default SignUp
+export default SignUp;

@@ -19,7 +19,7 @@ const Inspirational = () => {
         <section className="max-w-7xl mx-auto text-center items-center justify-center my-24">
             <div className="space-y-3">
             <p className="text-red-500 flex  justify-center text-5xl animate-bounce"> <span className="text-white">.</span> <MdOutlinePets /> </p>
-            <h2 className="text-red-500 text-2xl  ">Meet the animals</h2>
+            <h2 className="text-red-500 text-2xl  ">Meet the Animals</h2>
             <h2 className=" text-[#0A303A] font-bold text-5xl ">Puppies Waiting for Adoption</h2>
             <h2 className=" text-[#0A303A] mx-auto max-w-[640px]  ">Every year, approximately 6.5 million pets enter animal shelters nationwide, and 1.5 million become euthanized. And with the current shelter crisis, numbers are on the rise. But you can help! Not only are pets scientifically proven to reduce stress levels and improve blood pressure, but no one can offer unconditional love and companionship pet can.</h2>
             </div>

@@ -72,10 +72,10 @@ const PetDetails = () => {
                 gap-2
               '
                 >
-                  <div> <FaUser/> {pet?.host?.name}</div>
+                  <div className='flex gap-5 items-center'> <FaUser/> {pet?.host?.name}</div>
 
                   <img
-                    className='rounded-full'
+                    className='rounded-full '
                     height='30'
                     width='30'
                     alt='Avatar'

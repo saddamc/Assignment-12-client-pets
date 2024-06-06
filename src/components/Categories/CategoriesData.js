@@ -1,20 +1,8 @@
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb'
 import {
-  GiBarn,
-  GiBoatFishing,
-  GiCactus,
-  GiCastle,
-  GiCaveEntrance,
   GiFlatfish,
-  GiForestCamp,
-  GiIsland,
   GiRabbit,
-  GiWindmill,
 } from 'react-icons/gi'
 import { FaCat, FaDog } from 'react-icons/fa'
-import { BsSnow } from 'react-icons/bs'
-import { IoDiamond } from 'react-icons/io5'
-import { MdOutlineVilla } from 'react-icons/md'
 
 export const categories = [
   {
