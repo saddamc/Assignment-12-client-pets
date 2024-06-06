@@ -1,0 +1,146 @@
+[
+    {
+      "category": "cats",
+      "pet_image": "https://i.ibb.co/H2hPf4G/cat-1.jpg",
+      "pet_name": "Whiskers",
+      "location": "New York"
+    },
+    {
+      "category": "cats",
+      "pet_image": "https://i.ibb.co/d649T50/cat-2.jpg",
+      "pet_name": "Mittens",
+      "location": "Los Angeles"
+    },
+    {
+      "category": "cats",
+      "pet_image": "https://i.ibb.co/Cs4pZ13/cat-3.jpg",
+      "pet_name": "Felix",
+      "location": "Chicago"
+    },
+    {
+      "category": "cats",
+      "pet_image": "https://i.ibb.co/4T7Gfrr/cat-4.jpg",
+      "pet_name": "Luna",
+      "location": "Houston"
+    },
+    {
+      "category": "cats",
+      "pet_image": "https://i.ibb.co/Pxr0WGj/cat-5.jpg",
+      "pet_name": "Simba",
+      "location": "Miami"
+    },
+    {
+      "category": "cats",
+      "pet_image": "https://i.ibb.co/10tLR0X/cat-6.jpg",
+      "pet_name": "Oliver",
+      "location": "Seattle"
+    },
+    {
+      "category": "dogs",
+      "pet_image": "https://i.ibb.co/kQSKXBB/dog-1.jpg",
+      "pet_name": "Buddy",
+      "location": "San Francisco"
+    },
+    {
+      "category": "dogs",
+      "pet_image": "https://i.ibb.co/74pjVDW/dog-2.jpg",
+      "pet_name": "Bailey",
+      "location": "Dallas"
+    },
+    {
+      "category": "dogs",
+      "pet_image": "https://i.ibb.co/3CL1nWW/dog-3.jpg",
+      "pet_name": "Max",
+      "location": "Atlanta"
+    },
+    {
+      "category": "dogs",
+      "pet_image": "https://i.ibb.co/99cz6B2/dog-4.jpg",
+      "pet_name": "Sadie",
+      "location": "Boston"
+    },
+    {
+      "category": "dogs",
+      "pet_image": "https://i.ibb.co/VVMx2Fz/dog-5.jpg",
+      "pet_name": "Rocky",
+      "location": "Philadelphia"
+    },
+    {
+      "category": "dogs",
+      "pet_image": "https://i.ibb.co/RDK0kng/dog-6.jpg",
+      "pet_name": "Daisy",
+      "location": "Denver"
+    },
+    {
+      "category": "rabbit",
+      "pet_image": "https://i.ibb.co/jGYhYxp/rabbit-1.jpg",
+      "pet_name": "Bunny",
+      "location": "Portland"
+    },
+    {
+      "category": "rabbit",
+      "pet_image": "https://i.ibb.co/bJm4j5V/rabbit-2.jpg",
+      "pet_name": "Thumper",
+      "location": "Austin"
+    },
+    {
+      "category": "rabbit",
+      "pet_image": "https://i.ibb.co/ZWc3Z5p/rabbit-3.jpg",
+      "pet_name": "Cottontail",
+      "location": "Orlando"
+    },
+    {
+      "category": "rabbit",
+      "pet_image": "https://i.ibb.co/MnkdFb9/rabbit-4.jpg",
+      "pet_name": "Hopper",
+      "location": "San Diego"
+    },
+    {
+      "category": "rabbit",
+      "pet_image": "https://i.ibb.co/HLy2zV6/rabbit-5.jpg",
+      "pet_name": "Flopsy",
+      "location": "Nashville"
+    },
+    {
+      "category": "rabbit",
+      "pet_image": "https://i.ibb.co/Vv9Tn9Q/rabbit-6.jpg",
+      "pet_name": "Peter",
+      "location": "Detroit"
+    },
+    {
+      "category": "fish",
+      "pet_image": "https://i.ibb.co/S3VQvfs/fish-1.jpg",
+      "pet_name": "Nemo",
+      "location": "Las Vegas"
+    },
+    {
+      "category": "fish",
+      "pet_image": "https://i.ibb.co/HKsndfN/fish-2.jpg",
+      "pet_name": "Dory",
+      "location": "Phoenix"
+    },
+    {
+      "category": "fish",
+      "pet_image": "https://i.ibb.co/DW6Kkt9/fish-3.jpg",
+      "pet_name": "Bubbles",
+      "location": "Miami"
+    },
+    {
+      "category": "fish",
+      "pet_image": "https://i.ibb.co/v3rThwr/fish-4.jpg",
+      "pet_name": "Goldie",
+      "location": "Seattle"
+    },
+    {
+      "category": "fish",
+      "pet_image": "https://i.ibb.co/6s7Zm1J/fish-5.jpg",
+      "pet_name": "Splash",
+      "location": "New Orleans"
+    },
+    {
+      "category": "fish",
+      "pet_image": "https://i.ibb.co/wwCPjvj/fish-6.jpg",
+      "pet_name": "Finley",
+      "location": "Houston"
+    }
+  ]
