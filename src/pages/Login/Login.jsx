@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { ImSpinner9 } from 'react-icons/im'
 import useAuth from '../../hooks/useAuth'
@@ -9,6 +9,8 @@ import { useState } from 'react'
 const Login = () => {
   const navigate = useNavigate()
   const { signInWithGoogle, signIn, updateUserProfile, loginGithub, loading, setLoading } = useAuth()
+  const location = useLocation()
+  const from = location?.state || '/'
 
 
   const handleSubmit = async e => {
@@ -22,7 +24,7 @@ const Login = () => {
       setLoading(true)
       // 1. Sign in user
       await signIn(email, password)
-      await navigate('/')
+      navigate(from)
       toast.success('SignIn Successful')
     } catch(err){
       console.log(err)
@@ -37,7 +39,7 @@ const Login = () => {
       setLoading(true)
       await signInWithGoogle()
   
-      navigate('/')
+      navigate(from)
       toast.success('SignIn Successful')
 
     } catch(err){
@@ -142,8 +144,9 @@ const Login = () => {
       </div>
       <div className="text-xl rounded-md shadow-md shadow-slate-100">
         <button 
+        disabled={loading}
         onClick={handleGithubLogin} 
-        className="bg-slate-600 w-[120px] h-[40px] px-2 font-semibold text-white rounded-md flex justify-center text-center items-center hover:bg-green-500 hover:text-black">
+        className="disabled:cursor-not-allowed bg-slate-600 w-[120px] h-[40px] px-2 font-semibold text-white rounded-md flex justify-center text-center items-center hover:bg-green-500 hover:text-black">
             <FaGithub></FaGithub>
             <span className="ml-1">GitHub</span></button>
       </div>

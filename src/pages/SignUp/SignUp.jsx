@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { ImSpinner9 } from "react-icons/im";
+import { imageUpload } from '../../Api/ImageUpload'
 
 
 
@@ -23,30 +24,19 @@ const SignUp = () => {
     console.log(name, email, password)
     console.log(image)
 
-    const formData = new FormData()
-    formData.append('image', image)
-
-    console.log(formData)
 
     try{
       setLoading(true)
       // 1. Upload image and get image url
-      const {data} = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
-        formData
-      )
-
-      console.log(data.data.display_url)
-
-      // const image_url = await imageUpload(image)
+      const image_url = await imageUpload(image)
       // console.log(image_url)
-
+      
       // 2. user Registration
       const result = await createUser(email, password)
       console.log(result)
 
       //  3. Save username and photo in firebase
-      await updateUserProfile(name, data.data.display_url)
+      await updateUserProfile(name, image_url)
       navigate('/')
       toast.success('Signup Successful')
 
@@ -192,8 +182,9 @@ const SignUp = () => {
       </div>
       <div className="text-xl rounded-md shadow-md shadow-slate-100">
         <button 
+        disabled={loading}
         onClick={handleGithubLogin} 
-        className="bg-slate-600 w-[120px] h-[40px] px-2 font-semibold text-white rounded-md flex justify-center text-center items-center hover:bg-green-500 hover:text-black">
+        className="disabled:cursor-not-allowed bg-slate-600 w-[120px] h-[40px] px-2 font-semibold text-white rounded-md flex justify-center text-center items-center hover:bg-green-500 hover:text-black">
             <FaGithub></FaGithub>
             <span className="ml-1">GitHub</span></button>
       </div>
