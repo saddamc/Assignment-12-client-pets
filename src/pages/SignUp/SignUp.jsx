@@ -23,6 +23,7 @@ const SignUp = () => {
     const image = form.image.files[0]
     console.log(name, email, password)
     console.log(image)
+      
 
 
     try{
@@ -63,7 +64,6 @@ const SignUp = () => {
       toast.error(err.message)
     }
   }
-  console.log(handleGoogleLogin)
 
   // Google SignIn
   const handleGithubLogin = async () => {
