@@ -13,6 +13,8 @@ import AdoptRequest from '../pages/Dashboard/User/AdoptRequest'
 import CreateCampaign from '../pages/Dashboard/User/CreateCampaign'
 import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
 import MyDonation from '../pages/Dashboard/User/MyDonation'
+import AllUsers from '../pages/Dashboard/User/AllUsers'
+import Profile from '../pages/Dashboard/Common/Profile'
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ export const router = createBrowserRouter([
         element: <Overview />,
       },
       {
+        path: 'all-users',
+        element: <AllUsers />,
+      },
+      {
         path: 'add-pet',
         element: <AddPet />,
       },
@@ -63,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-donations',
         element: <MyDonation />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
     ],
   }

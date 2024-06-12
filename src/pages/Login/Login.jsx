@@ -4,11 +4,10 @@ import { ImSpinner9 } from 'react-icons/im'
 import useAuth from '../../hooks/useAuth'
 import { FaGithub } from 'react-icons/fa'
 import toast from 'react-hot-toast'
-import { useState } from 'react'
 
 const Login = () => {
   const navigate = useNavigate()
-  const { signInWithGoogle, signIn, updateUserProfile, loginGithub, loading, setLoading } = useAuth()
+  const { signInWithGoogle, signIn, loginGithub, loading, setLoading } = useAuth()
   const location = useLocation()
   const from = location?.state || '/'
 

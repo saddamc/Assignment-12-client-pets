@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
@@ -36,14 +37,13 @@ const Navbar = () => {
                         </div>
                 </Link>
                
-                  
                 </div>
                 {/* Dropdown btn */}
                 <div
                   onClick={() => setIsOpen(!isOpen)}
-                  className='p-1 md:py-1 md:px-1 border-[4px] border-neutral-300 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md hover:shadow-green-400 transition'
-                >
-                  {/* <AiOutlineMenu /> */}
+                  className='p-1 md: md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-green-400 hover:shadow-md transition'
+                  >
+                  <AiOutlineMenu />
                   <div className=''>
                     {/* Avatar */}
                     <img

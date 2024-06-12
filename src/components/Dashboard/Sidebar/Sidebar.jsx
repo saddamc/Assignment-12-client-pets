@@ -11,16 +11,56 @@ import { CiViewList } from "react-icons/ci";
 import { SiEclipseadoptium } from "react-icons/si";
 import { BiSolidDonateHeart } from "react-icons/bi";
 import { VscGitPullRequestCreate } from "react-icons/vsc";
+import UserModal from '../../Modal/UserModal'
+import toast from 'react-hot-toast'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
 
 
 const Sidebar = () => {
-  const { logOut } = useAuth()
+  const axiosSecure = useAxiosSecure()
+  const { logOut, user } = useAuth()
   const [isActive, setActive] = useState(false)
+  const isAdmin =  true;
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
   }
+
+  // for Modal
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
+  // Modal Handler 
+  const modalHandler = async () => {
+    console.log('I want to be a host')
+    closeModal()
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: 'Admin',
+        status: 'Requested',
+        
+      }
+      console.log(currentUser)
+  
+      const { data } = await axiosSecure.put(`/user`, currentUser)
+      console.log(data)
+      if(data.modifiedCount > 0) {
+        toast.success('Success! Please wait for admin confirmation')
+      } else {
+        toast.success('Please!, wait for admin approval')
+      }
+    } catch (err) { 
+      console.log(err)
+      toast.error(err.message)
+    } finally {
+      closeModal()
+    }
+  }
+
   return (
     <>
      {/* Small Screen Navbar */}
@@ -38,7 +78,7 @@ const Sidebar = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col   justify-between overflow-x-hidden mt-[82px] bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col   justify-between overflow-x-hidden mt-[68px] bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && '-translate-x-full'
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -50,7 +90,24 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {/* Overview */}
+              {/*Admin Apply Button */}
+              <button
+              // disabled={!user}
+              onClick={() => setIsModalOpen(true)}              
+                className=' bg-rose-400 ml-9 rounded-xl mt-4 opacity-70 hover:bg-green-500'
+              >
+
+                <span className='mx-4 font-medium text-slate-100 p-2'>Apply Admin</span>
+              </button>
+              {/* Modal */}
+              <UserModal isOpen={isModalOpen} closeModal={closeModal}
+              modalHandler={modalHandler}
+              />
+
+              {
+                isAdmin ?
+                <>
+                {/* Overview */}
               <NavLink
                 to='/dashboard'
                 end
@@ -63,6 +120,20 @@ const Sidebar = () => {
                 <BsGraphUp className='w-5 h-5' />
 
                 <span className='mx-4 font-medium'>Overview</span>
+              </NavLink>
+
+               {/* All Users */}
+               <NavLink
+                to='all-users'
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
+                  }`
+                }
+              >
+                <RiStickyNoteAddFill className='w-5 h-5' />
+
+                <span className='mx-4 font-medium'>All Users</span>
               </NavLink>
 
                {/* Add Pet */}
@@ -90,7 +161,7 @@ const Sidebar = () => {
               >
                 <CiViewList className='w-5 h-5' />
 
-                <span className='mx-4 font-medium'>My Added Pets</span>
+                <span className='mx-4 font-medium'>My Pets</span>
               </NavLink>
               
               
@@ -154,10 +225,20 @@ const Sidebar = () => {
               </NavLink>
               
               
-            </nav>
-          </div>
-        </div>
+            
+          
+      
+                </>
+                :
+                <>
+                
+                </>
+              }
 
+</nav>
+
+</div>
+      </div>
         <div>
           <hr />
 

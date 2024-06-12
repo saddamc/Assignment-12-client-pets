@@ -12,7 +12,7 @@ import { imageUpload } from '../../Api/ImageUpload'
 const SignUp = () => {
   const navigate = useNavigate()
   const {createUser, signInWithGoogle, updateUserProfile, loginGithub, loading,
-    setLoading, } = useAuth()
+    setLoading, saveUser } = useAuth()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -32,13 +32,16 @@ const SignUp = () => {
       // console.log(image_url)
       
       // 2. user Registration
-      const result = await createUser(email, password)
+      const result = await createUser( email, password)
       console.log(result)
-
-      //  3. Save username and photo in firebase
+      
+      //  3. Save username and photo in mongoDB
       await updateUserProfile(name, image_url)
+      await saveUser({displayName: name, email: email}, image_url)
       navigate('/')
       toast.success('Signup Successful')
+
+    
 
     } catch(err){
       console.log(err)
@@ -60,6 +63,7 @@ const SignUp = () => {
       toast.error(err.message)
     }
   }
+  console.log(handleGoogleLogin)
 
   // Google SignIn
   const handleGithubLogin = async () => {

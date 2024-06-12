@@ -46,7 +46,7 @@ const PetDetails = () => {
           <div className='flex flex-col gap-6'>
             <div>
               <p className='text-4xl font-bold ml-24 my-4'> {pet?.pet_name} </p>
-              <div className='w-[450px] md:w-[650px] lg:w-[650px] h-[500px] overflow-hidden rounded-xl'>
+              <div className='w-[450px] md:w-[650px] lg:w-[650px] h-[500px]  overflow-y-auto rounded-xl'>
                 <img
                   className='object-cover w-full'
                   src={pet.pet_image}
@@ -73,15 +73,23 @@ const PetDetails = () => {
                 gap-2
               '
                 >
-                  <div className='flex gap-5 items-center'> <FaUser/> {pet?.host?.name}</div>
-
+                 
+                  <div className='flex gap-2 items-center '> 
+                    <FaUser className='w-[70px] h-[70px]'/>
                   <img
-                    className='rounded-full '
-                    height='30'
-                    width='30'
+                    className='rounded-full  '
+                    height='40'
+                    width='40'
                     alt='Avatar'
-                    src={pet?.host?.image}
+                    src={pet?.User?.image}
                   />
+                  
+                  <p className=''> {pet?.User?.name}</p>
+                  
+                  </div>
+                
+
+                 
                 </div>
                 <div
                   className='
@@ -100,6 +108,15 @@ const PetDetails = () => {
 
               <div className='flex w-[300px] text-neutral-500'>
                 <p>Location: {pet.location} </p>
+                 
+              </div>
+              <div className='flex w-[300px] text-neutral-500'>
+                <p>Note: {pet.shortDescription} </p>
+                 
+              </div>
+              <div className=' w-[300px] text-neutral-500'>
+                <p className='underline text-black'>Details:  </p>
+                <p>{pet.description}</p>
                  
               </div>
             </div>

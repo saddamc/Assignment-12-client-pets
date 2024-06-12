@@ -50,10 +50,10 @@ const AuthProvider = ({ children }) => {
     return signOut(auth)
   }
 
-  const updateUserProfile = (name, photo) => {
+  const updateUserProfile = (name, image_url) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
+      photoURL: image_url,
     })
   }
 
@@ -67,13 +67,29 @@ const AuthProvider = ({ children }) => {
   //   return data
   // }
 
+  // save user
+  const saveUser = async (user, image_url) =>{
+    const currentUser = {
+      name: user?.displayName,
+      email: user?.email,
+      image: image_url,
+      role: 'User',
+      status:'Verified',
+    }
+    const {data} = await axios.put(
+      `${import.meta.env.VITE_API_URL}/user`, 
+      currentUser)
+    return data
+  }
+
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
-      // if (currentUser) {
-      //   getToken(currentUser.email)
-      // }
+      if (currentUser) {
+        //   getToken(currentUser.email)
+        saveUser(currentUser)
+      }
       setLoading(false)
     })
     return () => {
@@ -92,6 +108,7 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     logOut,
     updateUserProfile,
+    saveUser
   }
 
   return (
