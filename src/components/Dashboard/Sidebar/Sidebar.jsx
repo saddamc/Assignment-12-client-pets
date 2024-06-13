@@ -3,7 +3,6 @@ import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
-import { NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import { MdOutlineCampaign} from 'react-icons/md'
 import { RiStickyNoteAddFill } from "react-icons/ri";
@@ -14,12 +13,19 @@ import { VscGitPullRequestCreate } from "react-icons/vsc";
 import UserModal from '../../Modal/UserModal'
 import toast from 'react-hot-toast'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import useRole from '../../../hooks/useRole'
+import MenuItem from './Menu/MenuItem'
+import { FaUserCog } from 'react-icons/fa'
+import UserMenu from './Menu/UserMenu'
+import AdminMenu from './Menu/AdminMenu'
 
 
 const Sidebar = () => {
   const axiosSecure = useAxiosSecure()
   const { logOut, user } = useAuth()
   const [isActive, setActive] = useState(false)
+  const [role, isLoading] = useRole()
+  console.log(role, isLoading)
   const isAdmin =  true;
 
   // Sidebar Responsive Handler
@@ -91,149 +97,31 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/*Admin Apply Button */}
-              <button
+
+              {
+                role === 'User' &&
+                <button
               // disabled={!user}
               onClick={() => setIsModalOpen(true)}              
-                className=' bg-rose-400 ml-9 rounded-xl mt-4 opacity-70 hover:bg-green-500'
+                className=' bg-rose-500 ml-9 rounded-xl mt-4 opacity-70 hover:bg-green-500'
               >
 
                 <span className='mx-4 font-medium text-slate-100 p-2'>Apply Admin</span>
               </button>
+              
+              }
+
               {/* Modal */}
               <UserModal isOpen={isModalOpen} closeModal={closeModal}
               modalHandler={modalHandler}
               />
 
-              {
-                isAdmin ?
-                <>
-                {/* Overview */}
-              <NavLink
-                to='/dashboard'
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <BsGraphUp className='w-5 h-5' />
+               {/* Overview */}
+               <MenuItem label='Overview' address='/dashboard' icon={BsGraphUp} />
 
-                <span className='mx-4 font-medium'>Overview</span>
-              </NavLink>
+               {role === 'User' &&  <UserMenu /> }
+               {role === 'Admin' &&  <AdminMenu /> }
 
-               {/* All Users */}
-               <NavLink
-                to='all-users'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <RiStickyNoteAddFill className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>All Users</span>
-              </NavLink>
-
-               {/* Add Pet */}
-               <NavLink
-                to='add-pet'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <RiStickyNoteAddFill className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>Add Pet</span>
-              </NavLink>
-
-               {/* My Added Pets */}
-               <NavLink
-                to='my-pets'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <CiViewList className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>My Pets</span>
-              </NavLink>
-              
-              
-               
-
-              {/* Adoption Request */}
-              <NavLink
-                to='adopt'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <SiEclipseadoptium className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>Adopt Pets </span>
-              </NavLink>
-
-              {/* Create Donation Campaign */}
-              <NavLink
-                to='campaign'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <VscGitPullRequestCreate className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>Create Campaign</span>
-              </NavLink>
-
-
-              {/* My Donation Campaigns */}
-              <NavLink
-                to='my-campaigns'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <MdOutlineCampaign className='w-8 h-8' />
-
-                <span className='mx-4 font-medium'>My Campaigns</span>
-              </NavLink>
-
-              {/* My Donations */}
-              <NavLink
-                to='my-donations'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300   text-red-500' : 'text-gray-600'
-                  }`
-                }
-              >
-                <BiSolidDonateHeart className='w-6 h-6' />
-
-                <span className='mx-4 font-medium'>My Donations</span>
-              </NavLink>
-              
-              
-            
-          
-      
-                </>
-                :
-                <>
-                
-                </>
-              }
 
 </nav>
 
@@ -243,18 +131,8 @@ const Sidebar = () => {
           <hr />
 
           {/* Profile Menu */}
-          <NavLink
-            to='/dashboard/profile'
-            className={({ isActive }) =>
-              `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-              }`
-            }
-          >
-            <FcSettings className='w-5 h-5' />
-
-            <span className='mx-4 font-medium'>Profile</span>
-          </NavLink>
+          <MenuItem label='Profile' address='/dashboard/profile' icon={FcSettings} />  
+         
           <button
             onClick={logOut}
             className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'

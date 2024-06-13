@@ -2,13 +2,13 @@ import useAuth from '../../../hooks/useAuth'
 import { Helmet } from 'react-helmet-async'
 // import useRole from '../../../hooks/useRole'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
+import useRole from '../../../hooks/useRole'
 
 const Profile = () => {
   const { user, loading } = useAuth() || {}
-  // const [role, isLoading] = useRole()
+  const [role, isLoading] = useRole()
 
-  console.log(user)
-  // if (isLoading || loading) return <LoadingSpinner />
+  if (isLoading || loading) return <LoadingSpinner />
   if ( loading) return <LoadingSpinner />
   return (
     <div className='flex justify-center items-center h-screen'>
@@ -18,7 +18,7 @@ const Profile = () => {
       <div className='bg-white shadow-lg rounded-2xl w-3/5'>
         <img
           alt='profile'
-          src='https://wallpapercave.com/wp/wp10784415.jpg'
+          src='https://i.ibb.co/d741XQv/profile-bg.jpg'
           className='w-full mb-4 rounded-t-lg h-36'
         />
         <div className='flex flex-col items-center justify-center p-4 -mt-16'>
@@ -30,8 +30,8 @@ const Profile = () => {
             />
           </a>
 
-          <p className='p-2 uppercase px-4 text-xs text-white bg-pink-500 rounded-full'>
-            {/* {role} */}
+          <p className='p-2 lowercase px-4 text-xs text-white bg-pink-500 rounded-full'>
+            {role}
           </p>
           <p className='mt-2 text-xl font-medium text-gray-800 '>
             User Id: {user?.uid}

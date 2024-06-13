@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
         element: <Overview />,
       },
       {
-        path: 'all-users',
+        path: 'manage-users',
         element: <AllUsers />,
       },
       {

@@ -52,6 +52,7 @@ const SignUp = () => {
 
   // Google SignIn
   const handleGoogleLogin = async () => {
+    console.log(handleGithubLogin)
     try{
       setLoading(true)
       await signInWithGoogle()
