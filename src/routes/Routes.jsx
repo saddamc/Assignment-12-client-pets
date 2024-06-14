@@ -15,6 +15,9 @@ import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
 import MyDonation from '../pages/Dashboard/User/MyDonation'
 import AllUsers from '../pages/Dashboard/User/AllUsers'
 import Profile from '../pages/Dashboard/Common/Profile'
+import PrivateRoute from './PrivateRoute'
+import AdminRoute from './AdminRoute'
+import UserRoute from './UserRoute'
 
 export const router = createBrowserRouter([
   {
@@ -36,43 +39,89 @@ export const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   {
     path: '/dashboard',
-    element: <DashboardLayout />,
+    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
       {
         index: true,
-        element: <Overview />,
+        element: <PrivateRoute><Overview /></PrivateRoute>,
       },
       {
         path: 'manage-users',
-        element: <AllUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),   
       },
       {
         path: 'add-pet',
-        element: <AddPet />,
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <AddPet />
+            </UserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'my-pets',
-        element: <MyPets />,
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <MyPets />
+            </UserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'adopt',
-        element: <AdoptRequest />,
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <AdoptRequest />
+            </UserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'campaign',
-        element: <CreateCampaign />,
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <CreateCampaign />
+            </UserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'my-campaigns',
-        element: <MyCampaigns />,
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <MyCampaigns />
+            </UserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'my-donations',
-        element: <MyDonation />,
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <MyDonation />
+            </UserRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'profile',
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+              <Profile />
+          </PrivateRoute>
+        ),
       },
     ],
   }

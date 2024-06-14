@@ -13,11 +13,11 @@ const AllUsersRow = ({ user, refetch, index }) => {
   // console.log(user)
   const [isOpen, setIsOpen] = useState(false)
   const axiosSecure = useAxiosSecure()
-
+  const { user: loggedInUser } = useAuth()
   const {mutateAsync} = useMutation({
     mutationFn: async role => {
       const {data} = await axiosSecure.patch(
-        `/users/update/${user?.email}`,
+        `/users/update/${user?.email}`, /** Don't use user email because useAuth user provide us user email */
         role
       )
       return data
@@ -33,21 +33,29 @@ const AllUsersRow = ({ user, refetch, index }) => {
 
   // modal handler
   const modalHandler = async selected => {
-    const user = {
+
+    // if (user?.status === 'Verified')
+    //   return toast.success("User can't send request for change Role")
+
+    if(loggedInUser.email === user.email){
+      toast.error("Action Not Allowed")
+      return setIsOpen(false)
+    }
+
+    console.log('user Role Updated', selected)
+    const userRole = {
       role: selected,
       status: 'Verified',
       // email: user?.email,
     }
 
     try {
-      await mutateAsync(user)
+      await mutateAsync(userRole)
       console.log(data)
     }catch(err){
       console.log(err)
       toast.error(err.message)
     }
-
-
   }
 
   return (

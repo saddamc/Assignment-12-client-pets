@@ -4,20 +4,14 @@ import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
 import useAuth from '../../../hooks/useAuth'
-import { MdOutlineCampaign} from 'react-icons/md'
-import { RiStickyNoteAddFill } from "react-icons/ri";
-import { CiViewList } from "react-icons/ci";
-import { SiEclipseadoptium } from "react-icons/si";
-import { BiSolidDonateHeart } from "react-icons/bi";
-import { VscGitPullRequestCreate } from "react-icons/vsc";
 import UserModal from '../../Modal/UserModal'
 import toast from 'react-hot-toast'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import useRole from '../../../hooks/useRole'
 import MenuItem from './Menu/MenuItem'
-import { FaUserCog } from 'react-icons/fa'
 import UserMenu from './Menu/UserMenu'
 import AdminMenu from './Menu/AdminMenu'
+import useAdmin from '../../../hooks/useAdmin'
 
 
 const Sidebar = () => {
@@ -26,7 +20,7 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false)
   const [role, isLoading] = useRole()
   console.log(role, isLoading)
-  const isAdmin =  true;
+  const isAdmin =  useAdmin();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -84,7 +78,7 @@ const Sidebar = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col   justify-between overflow-x-hidden mt-[68px] bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col   justify-between overflow-x-hidden mt-[68px] bg-yellow-400 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && '-translate-x-full'
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -102,13 +96,11 @@ const Sidebar = () => {
                 role === 'User' &&
                 <button
               // disabled={!user}
-              onClick={() => setIsModalOpen(true)}              
-                className=' bg-rose-500 ml-9 rounded-xl mt-4 opacity-70 hover:bg-green-500'
+              onClick={() => setIsModalOpen(isAdmin)}              
+                className=' bg-rose-600 ml-9  rounded-xl mt-4 opacity-70 hover:bg-green-500'
               >
-
-                <span className='mx-4 font-medium text-slate-100 p-2'>Apply Admin</span>
+                <span className='mx-4 font-medium text-white p-2'>Apply Admin</span>
               </button>
-              
               }
 
               {/* Modal */}

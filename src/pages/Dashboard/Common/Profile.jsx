@@ -30,7 +30,7 @@ const Profile = () => {
             />
           </a>
 
-          <p className='p-2 lowercase px-4 text-xs text-white bg-pink-500 rounded-full'>
+          <p className='p-2 uppercase px-4 text-xs text-white bg-pink-500 rounded-full'>
             {role}
           </p>
           <p className='mt-2 text-xl font-medium text-gray-800 '>

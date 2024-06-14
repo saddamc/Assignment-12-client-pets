@@ -71,7 +71,7 @@ const Navbar = () => {
                       <>
                       <Link
                       to='/dashboard'
-                      className='block px-4 py-3 hover:bg-red-500 transition font-semibold'
+                      className='block px-4 py-3 hover:bg-red-500 transition font-semibold ' 
                     >
                       Dashboard
                     </Link>
@@ -97,6 +97,7 @@ const Navbar = () => {
                           Sign Up
                         </Link>
                       </>
+                      
                     )}
                   </div>
                 </div>

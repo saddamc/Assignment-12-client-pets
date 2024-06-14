@@ -6,7 +6,7 @@ import AllUsersRow from "../Admin/Page/AllUsersRow";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
-    const {data: users = [], isLoading, refetch } = useQuery({
+    const {data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
         const {data} = await axiosSecure('/users');
