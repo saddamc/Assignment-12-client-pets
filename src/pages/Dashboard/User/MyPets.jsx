@@ -44,6 +44,8 @@ const MyPets = () => {
         }
     }
 
+    // handle Update Button 
+
     
     
       if (isLoading) return <LoadingSpinner />
@@ -106,6 +108,7 @@ const MyPets = () => {
                         pets.map(pet => 
                              <MyPetsRow key={pet._id} pet={pet}
                               handleDelete={handleDelete}
+                              refetch={refetch}
                              > </MyPetsRow>
                               )
                     }

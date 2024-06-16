@@ -55,6 +55,8 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),   
       },
+
+      // user Route
       {
         path: 'add-pet',
         element: (

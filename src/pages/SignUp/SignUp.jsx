@@ -3,9 +3,9 @@ import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
 import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
-import axios from 'axios'
 import { ImSpinner9 } from "react-icons/im";
 import { imageUpload } from '../../Api/ImageUpload'
+import { PiUserCirclePlusFill } from "react-icons/pi";
 
 
 
@@ -87,11 +87,12 @@ const SignUp = () => {
 
     <div className='flex justify-center items-center min-h-screen bg-[#BFDADA] '>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 
-       bg-[#92B7B7] text-gray-900'>
+       bg-[#113B54] text-[#C4AC8C] '>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
+          <h1 className='my-3 text-4xl text-white font-bold items-center text-center flex justify-center uppercase'> <span className='text-5xl mr-2'><PiUserCirclePlusFill /></span> Sign Up</h1>
           <p className='text-sm animate-bounce text-rose-600 font-bold'>Welcome to Petco</p>
         </div>
+        
         <form
          onSubmit={handleSubmit}
           className='space-y-6 '
@@ -99,7 +100,7 @@ const SignUp = () => {
           <div className='space-y-4'>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
-                Name
+                NAME
               </label>
               <input
                 type='text'
@@ -112,7 +113,7 @@ const SignUp = () => {
             </div>
             <div>
               <label htmlFor='image' className='block mb-2 text-sm'>
-                Select Image:
+                SELECT IMAGE:
               </label>
               <input
                 required
@@ -124,7 +125,7 @@ const SignUp = () => {
             </div>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
-                Email address
+                EMAIL ADDRESS
               </label>
               <input
                 type='email'
@@ -139,7 +140,7 @@ const SignUp = () => {
             <div>
               <div className='flex justify-between'>
                 <label htmlFor='password' className='text-sm mb-2'>
-                  Password
+                  PASSWORD
                 </label>
               </div>
               <input
@@ -168,11 +169,11 @@ const SignUp = () => {
           </div>
         </form>
         <div className='flex items-center pt-4 space-x-1'>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-800'>
+          <div className='flex-1 h-px sm:w-16 dark:bg-white '></div>
+          <p className='px-3 text-sm  dark:text-[#C4AC8C]'>
             Signup with social accounts
           </p>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-900'></div>
+          <div className='flex-1 h-px sm:w-16 dark:bg-white'></div>
         </div>
         <div className="  min-w-[255px] min-h-[45px] items-center rounded-md mx-auto mb-10 space-y-2 justify-center text-center">
 
@@ -195,13 +196,13 @@ const SignUp = () => {
       </div>
     
     </div>
-      <p className='px-6 text-sm text-center text-gray-900 '>
+      <p className='px-6 text-sm text-center text-[#C4AC8C] '>
           Already have an account?{' '}
           <Link
             to='/login'
-            className='hover:underline hover:text-rose-500 text-blue-700'
+            className='hover:underline text-[#31aaf0] hover:text-rose-500 font-bold'
           >
-            Login
+            Sign In
           </Link>
         </p>
       </div>

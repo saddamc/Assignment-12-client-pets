@@ -4,6 +4,7 @@ import { ImSpinner9 } from 'react-icons/im'
 import useAuth from '../../hooks/useAuth'
 import { FaGithub } from 'react-icons/fa'
 import toast from 'react-hot-toast'
+import { PiUserSwitchFill } from 'react-icons/pi'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -65,9 +66,11 @@ const Login = () => {
 
   return (
     <div className='flex justify-center items-center min-h-screen bg-[#BFDADA] '>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-[#92B7B7] text-gray-900'>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-[#113B54] text-[#C4AC8C]'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Log In</h1>
+          <h1 className='my-3 text-4xl font-bold flex text-center items-center justify-center text-white uppercase'> <span className="text-5xl mr-2 ">
+                                <PiUserSwitchFill />
+                            </span> Sign In</h1>
           <p className='text-sm animate-bounce text-rose-600 font-bold'>
             Sign in to access your account
           </p>
@@ -126,11 +129,11 @@ const Login = () => {
           </button>
         </div>
         <div className='flex items-center pt-4 space-x-1'>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-800'>
+          <div className='flex-1 h-px sm:w-16 dark:bg-white'></div>
+          <p className='px-3 text-sm dark:text-[#C4AC8C]'>
             Login with social accounts
           </p>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+          <div className='flex-1 h-px sm:w-16 dark:bg-white'></div>
         </div>
          <div className="flex gap-4 justify-center my-4 ">
       <div className="text-xl rounded-md shadow-md shadow-slate-100">
@@ -151,11 +154,11 @@ const Login = () => {
       </div>
     
     </div>
-        <p className='px-6 text-sm text-center text-gray-900'>
+        <p className='px-6 text-sm text-center text-text-[#C4AC8C]'>
           Don&apos;t have an account yet?{' '}
           <Link
             to='/signup'
-            className='hover:underline hover:text-rose-500 text-blue-700'
+            className='hover:underline hover:text-rose-500 text-[#31aaf0]'
           >
             Sign up
           </Link>

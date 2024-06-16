@@ -1,13 +1,21 @@
+/* eslint-disable react/prop-types */
 import { categories } from '../Categories/CategoriesData'
 import { ImSpinner9 } from 'react-icons/im'
+import { BsPersonFillAdd } from "react-icons/bs";
+import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
 
 
 
 const AddPetForm = ({handleSubmit, setImagePreview, imagePreview, handleImage, setImageText, imageText, loading}) => {
 
   return (
-    <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
+    <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-200'>
       <form onSubmit={handleSubmit}>
+      <div className="w-full flex gap-2 justify-center items-center text-center p-3  text-3xl text-black font-extrabold rounded-lg  bg-rose-500 my-12">
+        <p className="text-white"> <BsPersonFillAdd /> </p>
+        <p className="text-white">Add  </p>
+        <h2 >Your Pet</h2>
+      </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
           <div className='space-y-6'>
 
@@ -37,15 +45,12 @@ const AddPetForm = ({handleSubmit, setImagePreview, imagePreview, handleImage, s
                       className='text-sm cursor-pointer w-36 hidden'
                       type='file'
                       onChange={e => handleImage(e.target.files[0])}
-                    //   onChange={e => {
-                    //     setImagePreview(URL.createObjectURL(e.target.files[0]))
-                    //   }}
                       name='image'
                       id='image'
                       accept='image/*'
                       hidden
                     />
-                    <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
+                    <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-600'>
                       {imageText.length > 20 ? 
                       imageText.split('.')[0].slice(0, 15) +
                       '....' +
@@ -60,20 +65,14 @@ const AddPetForm = ({handleSubmit, setImagePreview, imagePreview, handleImage, s
                     {imagePreview && <img src={imagePreview} />}
                 </div>
             </div>
-
-            
-
-           
-             
-              {/* Calender */}
-            
           </div>
 
-          
+
+             {/* Pet Name */}
           <div className='space-y-6'>
             <div className='space-y-1 text-sm'>
               <label htmlFor='name' className='block text-gray-600'>
-                Pets Name
+                Pet Name
               </label>
               <input
                 className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
@@ -151,14 +150,18 @@ const AddPetForm = ({handleSubmit, setImagePreview, imagePreview, handleImage, s
           </div>
         </div>
 
-        <button
-          disabled={loading}
-          type='submit'
-          className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500'
-        >
-          {loading ? <ImSpinner9 className='animate-spin m-auto' /> : 'Save & Continue'}
-          
-        </button>
+        <div className="flex items-center text-red-500">
+        <p> <IoArrowRedo />  </p>
+          <button
+            disabled={loading}
+            type='submit'
+            className='w-[98%] p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500 mb-6 text-2xl'
+          >
+            {loading ? <ImSpinner9 className='animate-spin m-auto ' /> : 'Save & Continue'}
+            
+          </button>
+          <p> <IoArrowUndo />  </p>
+        </div>
       </form>
     </div>
   )

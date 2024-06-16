@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react';
 import DeleteModal from '../../../../components/Modal/DeleteModal';
+import UpdatePetModal from '../../../../components/Modal/UpdatePetModal';
 
-const MyPetsRow = ({  pet, handleDelete }) => {
+const MyPetsRow = ({  pet, handleDelete, refetch }) => {
 
     // for Delete Modal
     let [isOpen, setIsOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const closeModal = () => {
         setIsOpen(false)
     }
@@ -51,18 +53,26 @@ const MyPetsRow = ({  pet, handleDelete }) => {
         {/* Delete modal */}
         <DeleteModal isOpen={isOpen} closeModal={closeModal}
         handleDelete={handleDelete}
-        id={pet?._id}
+        id={pet?._id}gi
          />
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+        <button 
+        onClick={() => setIsEditModalOpen(true)}
+        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
           <span
             aria-hidden='true'
             className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
           ></span>
           <span className='relative'>Update</span>
-        </span>
+        </button>
         {/* Update Modal */}
+        <UpdatePetModal 
+        pet={pet}
+        refetch={refetch}
+        isOpen={isEditModalOpen}
+        setIsEditModalOpen={setIsEditModalOpen}
+        />
       </td>
     </tr>
   )
