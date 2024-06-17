@@ -18,7 +18,7 @@ const UpdatePetForm = ({
 //   dates,
 }) => {
   return (
-    <div className='w-full min-h-[calc(100vh-40px)] min-w-[300px] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-200'>
+    <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-200'>
     <form onSubmit={handleSubmit}>
     <div className="w-full flex gap-2 justify-center items-center text-center p-3  text-3xl text-black font-extrabold rounded-lg  bg-rose-500 my-6">
       <p className="text-white"> <GrUpdate /> </p>
@@ -150,7 +150,7 @@ const UpdatePetForm = ({
             />
           </div>
 
-         
+         {/* Age */}
             <div className='space-y-1 text-sm'>
               <label htmlFor='age' className='block text-gray-600'>
                 Age

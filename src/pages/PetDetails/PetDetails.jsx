@@ -1,6 +1,5 @@
 import Container from '../../components/Shared/Container'
 import { Helmet } from 'react-helmet-async'
-import RoomReservation from '../../components/PetDetails/PetButton'
 import LoadingSpinner from '../../components/Shared/LoadingSpinner'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
@@ -123,7 +122,7 @@ const PetDetails = () => {
            </div>
 
             <div className='md:col-span-3 order-first md:order-last mb-10'>
-              {/* RoomReservation */}
+              {/* Adopt Button */}
               <PetButton pet={pet} />
             </div>
           </div>

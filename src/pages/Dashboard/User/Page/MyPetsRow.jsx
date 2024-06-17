@@ -53,7 +53,7 @@ const MyPetsRow = ({  pet, handleDelete, refetch }) => {
         {/* Delete modal */}
         <DeleteModal isOpen={isOpen} closeModal={closeModal}
         handleDelete={handleDelete}
-        id={pet?._id}gi
+        id={pet?._id}
          />
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
