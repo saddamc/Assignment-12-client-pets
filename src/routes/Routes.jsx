@@ -9,7 +9,6 @@ import DashboardLayout from '../layouts/DashboardLayout'
 import Overview from '../pages/Dashboard/Common/Overview'
 import AddPet from '../pages/Dashboard/User/AddPet'
 import MyPets from '../pages/Dashboard/User/MyPets'
-import AdoptRequest from '../pages/Dashboard/User/AdoptRequest'
 import CreateCampaign from '../pages/Dashboard/User/CreateCampaign'
 import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
 import MyDonation from '../pages/Dashboard/User/MyDonation'
@@ -18,6 +17,7 @@ import Profile from '../pages/Dashboard/Common/Profile'
 import PrivateRoute from './PrivateRoute'
 import AdminRoute from './AdminRoute'
 import UserRoute from './UserRoute'
+import AdoptPets from '../pages/Dashboard/User/AdoptPets'
 
 export const router = createBrowserRouter([
   {
@@ -78,11 +78,11 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'adopt',
+        path: 'my-adopt',
         element: (
           <PrivateRoute>
             <UserRoute>
-              <AdoptRequest />
+              <AdoptPets />
             </UserRoute>
           </PrivateRoute>
         ),

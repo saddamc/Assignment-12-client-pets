@@ -3,19 +3,23 @@ import Button from '../Shared/Button/Button'
 import useAuth from '../../hooks/useAuth'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../Shared/LoadingSpinner'
-import useAxiosCommon from '../../hooks/useAxiosCommon'
 import toast from 'react-hot-toast'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
 
-const PetButton = ({ pet }) => {
-  const axiosCommon = useAxiosCommon()
-  // const {id} = useParams()
+const PetButton = () => {
+  const axiosSecure = useAxiosSecure()
+  const {id} = useParams()
   const {user} = useAuth()
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
     // Fetch Adopt Data
     const {data: adopt = {}, isLoading, refetch} = useQuery({
-        queryKey: ['adopt', ],
+        queryKey: ['adopt', id],
         queryFn: async () => {
-          const {data} = await axiosCommon.get(`/adopt/${id}`) 
+          const {data} = await axiosSecure.get(`/adopt/${id}`) 
           return data
         }
       })
@@ -23,23 +27,23 @@ const PetButton = ({ pet }) => {
 
       const {mutateAsync} = useMutation({
         mutationFn: async adoptData => {
-          const {data} = await axiosCommon.post('/adopt', adoptData)
+          const {data} = await axiosSecure.patch(`/adopt/${id}`, adoptData)
           return data;
         },
         onSuccess: () =>{
-          console.log('Data Saved Successfully')
-          // toast.success('Pet Added Successfully')
-          // navigate('/dashboard/my-pets')
-          // setLoading(false)
+          // console.log('Data Saved Successfully')
+          toast.success('Adopt Successfully')
+          navigate('/dashboard/my-adopt')
+          setLoading(false)
+          refetch()
         }
       })
 
         // Adopt handle
   const handleAdoption = async e => {
-    // e.preventDefault()
-    // setLoading(true)
+    setLoading(true)
     const status = 'adopt'
-    const Adopt = {
+    const adopter = {
       name: user?.displayName,
       image: user?.photoURL,
       email: user?.email,
@@ -47,9 +51,8 @@ const PetButton = ({ pet }) => {
 
     try{
       const adoptData = {
-        pet,
         status,
-        Adopt,
+        adopter,
       }
       console.table(adoptData)
 
@@ -64,11 +67,7 @@ const PetButton = ({ pet }) => {
   
   }
 
-
-
       if (isLoading) return <LoadingSpinner />
-
-
 
 
   return (

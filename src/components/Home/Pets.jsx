@@ -3,11 +3,11 @@ import Container from '../Shared/Container'
 import Heading from '../Shared/Heading'
 import LoadingSpinner from '../Shared/LoadingSpinner'
 import { useQuery } from '@tanstack/react-query'
-import useAxiosCommon from '../../hooks/useAxiosCommon'
 import { useSearchParams } from 'react-router-dom'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
 
 const Pets = () => {
-  const axiosCommon = useAxiosCommon()
+  const axiosSecure = useAxiosSecure()
   // eslint-disable-next-line no-unused-vars
   const [params, setParams] = useSearchParams()
   const category = params.get('category')
@@ -16,7 +16,7 @@ const Pets = () => {
   const {data: pets = [], isLoading} = useQuery({
     queryKey: ['pets', category],
     queryFn: async () => {
-      const {data} = await axiosCommon.get(`/pets?category=${category}`)
+      const {data} = await axiosSecure.get(`/pets?category=${category}`)
       return data
     }
   })
@@ -30,7 +30,8 @@ const Pets = () => {
   
       {pets && pets.length > 0 ? (
         <div className='pt-12 max-w-7xl justify-center items-center mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
-          {pets.map(pet => (
+          {pets.filter(pet => pet.status !== 'adopt')
+          .map(pet => (
             <Card key={pet._id} pet={pet} />
           ))}
         </div>

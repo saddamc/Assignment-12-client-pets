@@ -18,7 +18,7 @@ const UserMenu = () => {
               
 
              {/* Adoption Request */}
-             <MenuItem label='Adopt Pets' address='adopt' icon={SiEclipseadoptium} />  
+             <MenuItem label='Adopt Pets' address='my-adopt' icon={SiEclipseadoptium} />  
             
 
              {/* Create Donation Campaign */}

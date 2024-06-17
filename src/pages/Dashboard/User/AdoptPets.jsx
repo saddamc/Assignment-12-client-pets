@@ -1,24 +1,25 @@
-import { Helmet } from 'react-helmet-async'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
-import useAuth from '../../../hooks/useAuth'
-import useAxiosSecure from '../../../hooks/useAxiosSecure'
-import MyPetsRow from './Page/MyPetsRow'
-import toast from 'react-hot-toast'
+import { Helmet } from "react-helmet-async"
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner"
+import useAxiosSecure from "../../../hooks/useAxiosSecure"
+import useAuth from "../../../hooks/useAuth"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import MyAdoptRow from "./Page/MyAdoptRow"
+import toast from "react-hot-toast"
 
-const MyPets = () => {
+
+const AdoptPets = () => {
     const axiosSecure = useAxiosSecure()
     const {user} = useAuth()
 
     // Fetch Pets Data
-    const {data: pets = [], isLoading, refetch} = useQuery({
-        queryKey: ['pets'],
+    const {data: adopts = [], isLoading, refetch} = useQuery({
+        queryKey: ['adopts'],
         queryFn: async () => {
-          const {data} = await axiosSecure.get(`/my-pets/${user?.email}`) 
+          const {data} = await axiosSecure.get(`/my-adopt/${user?.email}`) 
           return data
         }
       })
-    //   console.log(pets)
+      console.log(adopts)
 
     
     // delete database
@@ -30,7 +31,7 @@ const MyPets = () => {
         onSuccess: data => {
           console.log(data)
           refetch()
-          toast.success(`Pets deleted Successfully`)
+          toast.success(`Adopt Pet delete Successfully`)
         },
     })
 
@@ -44,7 +45,7 @@ const MyPets = () => {
         }
     }
 
-    // handle Update Button 
+   
 
     
     
@@ -54,7 +55,7 @@ const MyPets = () => {
   return (
     <>
       <Helmet> 
-        <title>My Pets | Dashboard</title>
+        <title>My Adopt | Dashboard</title>
       </Helmet>
 
       <div className='container mx-auto px-4 sm:px-8'>
@@ -95,18 +96,13 @@ const MyPets = () => {
                     >
                       Delete
                     </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Update
-                    </th>
+                    
                   </tr>
                 </thead>
                 <tbody>{/* Room row data */}
                 {
-                  pets.map(pet => (
-                      <MyPetsRow key={pet._id} pet={pet} handleDelete={handleDelete} refetch={refetch} />
+                  adopts.map(pet => (
+                      <MyAdoptRow key={pet._id} pet={pet} handleDelete={handleDelete} refetch={refetch} />
                     ))
                 }
                 </tbody>
@@ -118,5 +114,4 @@ const MyPets = () => {
     </>
   )
 }
-
-export default MyPets;
+export default AdoptPets;
