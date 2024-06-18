@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaUsers } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
-import AllUsersRow from "../Admin/Page/AllUsersRow";
+import AllUsersRow from "./Page/AllUsersRow";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure()

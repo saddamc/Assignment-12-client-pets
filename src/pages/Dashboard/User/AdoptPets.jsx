@@ -25,13 +25,13 @@ const AdoptPets = () => {
     // delete database
     const {mutateAsync} = useMutation({
         mutationFn: async id => {
-            const {data} = await axiosSecure.delete(`/pet/${id}`)
+            const {data} = await axiosSecure.delete(`/my-pet/${id}`)
             return data;
         },
         onSuccess: data => {
           console.log(data)
           refetch()
-          toast.success(`Adopt Pet delete Successfully`)
+          toast.success(`Pet Return Successfully`)
         },
     })
 
@@ -45,17 +45,14 @@ const AdoptPets = () => {
         }
     }
 
-   
 
-    
-    
       if (isLoading) return <LoadingSpinner />
     
 
   return (
     <>
       <Helmet> 
-        <title>My Adopt | Dashboard</title>
+        <title>Adopt | Dashboard </title>
       </Helmet>
 
       <div className='container mx-auto px-4 sm:px-8'>

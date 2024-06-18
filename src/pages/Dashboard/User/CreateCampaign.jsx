@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { imageUpload } from "../../../Api/ImageUpload";
-import AddPetForm from "../../../components/Form/AddPetForm";
 import useAuth from "../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-// import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import AddCampaign from "../../../components/Form/AddCampaign";
 
 
 const CreateCampaign = () => {
@@ -21,13 +20,13 @@ const CreateCampaign = () => {
 
   const {mutateAsync} = useMutation({
     mutationFn: async petData => {
-      const {data} = await axiosSecure.post('/pet', petData)
+      const {data} = await axiosSecure.post('/campaign', petData)
       return data;
     },
     onSuccess: () =>{
-      console.log('Data Saved Successfully')
-      toast.success('Pet Added Successfully')
-      navigate('/dashboard/my-pets')
+      console.log('Campaign Create Successfully')
+      toast.success('Campaign Create Successfully')
+      navigate('/dashboard/my-campaigns')
       setLoading(false)
     }
 
@@ -40,10 +39,10 @@ const CreateCampaign = () => {
     const form = e.target
     const category = form.category.value
     const pet_name = form.name.value;
-    const location = form.location.value;
+    const maxDonation = form.maxDonation.value;
+    const lastDate = form.lastDate.value;
     const shortDescription = form.shortDescription.value;
-    const age = form.age.value;
-    const description = form.description.value;
+    const longDescription = form.longDescription.value;
     const pet_image = form.image.files[0]
     const User = {
       name: user?.displayName,
@@ -55,11 +54,11 @@ const CreateCampaign = () => {
       const image_url = await imageUpload(pet_image)
       const petData = {
         category, 
-        pet_name, 
-        location, 
+        pet_name,
+        maxDonation, 
+        lastDate, 
         shortDescription, 
-        age, 
-        description,  
+        longDescription,  
         pet_image: image_url,
         User
       }
@@ -86,11 +85,11 @@ const CreateCampaign = () => {
   return (
     <>
     <Helmet>
-      <title>Add Pet | Dashboard</title>
+      <title>Campaign | Dashboard</title>
     </Helmet>
      
       {/* Form */}
-      <AddPetForm 
+      <AddCampaign
       handleSubmit={handleSubmit}
       setImagePreview={setImagePreview}
       imagePreview={imagePreview}

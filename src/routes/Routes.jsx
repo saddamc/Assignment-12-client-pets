@@ -10,14 +10,15 @@ import Overview from '../pages/Dashboard/Common/Overview'
 import AddPet from '../pages/Dashboard/User/AddPet'
 import MyPets from '../pages/Dashboard/User/MyPets'
 import CreateCampaign from '../pages/Dashboard/User/CreateCampaign'
-import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
 import MyDonation from '../pages/Dashboard/User/MyDonation'
-import AllUsers from '../pages/Dashboard/User/AllUsers'
+import AllUsers from '../pages/Dashboard/Admin/AllUsers'
 import Profile from '../pages/Dashboard/Common/Profile'
 import PrivateRoute from './PrivateRoute'
 import AdminRoute from './AdminRoute'
 import UserRoute from './UserRoute'
 import AdoptPets from '../pages/Dashboard/User/AdoptPets'
+import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
+import ManagePets from '../pages/Dashboard/Admin/ManagePets'
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,8 @@ export const router = createBrowserRouter([
         index: true,
         element: <PrivateRoute><Overview /></PrivateRoute>,
       },
+
+      // Admin Route
       {
         path: 'manage-users',
         element: (
@@ -55,8 +58,18 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),   
       },
+      {
+        path: 'manage-pets',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManagePets />
+            </AdminRoute>
+          </PrivateRoute>
+        ),   
+      },
 
-      // user Route
+      // User Route
       {
         path: 'add-pet',
         element: (

@@ -44,9 +44,7 @@ const MyPets = () => {
         }
     }
 
-    // handle Update Button 
-
-    
+      
     
       if (isLoading) return <LoadingSpinner />
     

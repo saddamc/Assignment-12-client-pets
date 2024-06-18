@@ -112,6 +112,9 @@ const Sidebar = () => {
                <MenuItem label='Overview' address='/dashboard' icon={BsGraphUp} />
 
                {role === 'User' &&  <UserMenu /> }
+               
+               <hr />
+
                {role === 'Admin' &&  <AdminMenu /> }
 
 
