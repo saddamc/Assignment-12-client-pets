@@ -138,4 +138,4 @@ UpdateRoomModal.propTypes = {
   isOpen: PropTypes.bool,
 }
 
-export default UpdateRoomModal
+export default UpdateRoomModal;

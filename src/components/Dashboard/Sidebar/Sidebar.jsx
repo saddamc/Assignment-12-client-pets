@@ -93,14 +93,18 @@ const Sidebar = () => {
               {/*Admin Apply Button */}
 
               {
-                role === 'User' &&
+                role === 'User' ?
                 <button
               // disabled={!user}
               onClick={() => setIsModalOpen(isAdmin)}              
-                className=' bg-rose-600 ml-9  rounded-xl mt-4 opacity-70 hover:bg-green-500'
+                className=' bg-rose-600 ml-9  rounded-xl mt-4  hover:bg-green-500'
               >
                 <span className='mx-4 font-medium text-white p-2'>Apply Admin</span>
               </button>
+              :
+              <>
+                <span className='bg-rose-600 ml-9  rounded-xl mt-4 w-full font-medium text-white px-6'>ADMIN PANEL</span>
+              </>
               }
 
               {/* Modal */}
@@ -113,9 +117,15 @@ const Sidebar = () => {
 
                {role === 'User' &&  <UserMenu /> }
                
-               <hr />
+              
 
-               {role === 'Admin' &&  <AdminMenu /> }
+               {role === 'Admin' ?
+                <>
+                <UserMenu />
+                <hr />
+                <AdminMenu />
+               </>  :
+                <UserMenu /> }
 
 
 </nav>

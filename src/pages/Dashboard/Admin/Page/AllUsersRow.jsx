@@ -73,9 +73,14 @@ const AllUsersRow = ({ user, refetch, index }) => {
         <img className='w-12 h-12' src={user?.image} alt="" />
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-      <p className='text-gray-900 whitespace-no-wrap'>{user?.role}</p>
+      <p className='text-gray-900 whitespace-no-wrap'>
+     
+        <div>
+          {user?.role === 'Admin' ? <span className='bg-green-500 text-white font-bold px-5 py-2 rounded-lg'>{user?.role} </span> : <span className=' font-bold px-6 py-2 '>{user?.role}</span>}
+        </div>
+        </p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm font-bold'>
         {user?.status ? (
           <p
             className={`${
@@ -93,7 +98,7 @@ const AllUsersRow = ({ user, refetch, index }) => {
         <button onClick={() => setIsOpen(true)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
           <span
             aria-hidden='true'
-            className='absolute inset-0 bg-rose-400 hover:bg-green-500 shadow-lg rounded-full'
+            className='absolute inset-0 bg-rose-400 hover:bg-green-500 rounded-md'
           ></span>
           <span className='relative text-white px-1'>Update Role</span>
         </button>

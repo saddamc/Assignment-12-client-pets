@@ -74,9 +74,9 @@ export const router = createBrowserRouter([
         path: 'add-pet',
         element: (
           <PrivateRoute>
-            <UserRoute>
+            
               <AddPet />
-            </UserRoute>
+            
           </PrivateRoute>
         ),
       },
@@ -84,9 +84,9 @@ export const router = createBrowserRouter([
         path: 'my-pets',
         element: (
           <PrivateRoute>
-            <UserRoute>
+            
               <MyPets />
-            </UserRoute>
+            
           </PrivateRoute>
         ),
       },
@@ -94,9 +94,9 @@ export const router = createBrowserRouter([
         path: 'my-adopt',
         element: (
           <PrivateRoute>
-            <UserRoute>
+            
               <AdoptPets />
-            </UserRoute>
+            
           </PrivateRoute>
         ),
       },
@@ -104,9 +104,9 @@ export const router = createBrowserRouter([
         path: 'campaign',
         element: (
           <PrivateRoute>
-            <UserRoute>
+            
               <CreateCampaign />
-            </UserRoute>
+           
           </PrivateRoute>
         ),
       },
@@ -114,9 +114,9 @@ export const router = createBrowserRouter([
         path: 'my-campaigns',
         element: (
           <PrivateRoute>
-            <UserRoute>
+            
               <MyCampaigns />
-            </UserRoute>
+            
           </PrivateRoute>
         ),
       },
@@ -124,9 +124,9 @@ export const router = createBrowserRouter([
         path: 'my-donations',
         element: (
           <PrivateRoute>
-            <UserRoute>
+            
               <MyDonation />
-            </UserRoute>
+            
           </PrivateRoute>
         ),
       },

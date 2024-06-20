@@ -17,28 +17,25 @@ const AllUsers = () => {
 
     return (
         <>
-        <Helmet> 
-        <title>Manage Users | Dashboard</title>
+      <Helmet> 
+        <title>User Manage | Dashboard</title>
       </Helmet>
         
         <div>
-             <div className="flex gap-12  mb-8 items-center  py-4 font-bold">
-                <div className="flex  w-4/12 gap-24 bg-slate-100 shadow-md p-4 rounded-lg  ">
+             <div className="flex items-center justify-center font-bold">
+                <div className="flex  w-[300px] justify-center items-center   gap-24 bg-rose-100 shadow-md p-4 rounded-lg  ">
                     <div className="w-3/12 text-white ">
                         <p className="px-4 py-3 bg-green-500 rounded-lg shadow-lg font-bold text-xl"><FaUsers /> </p>
                     </div>
-                    <div className="w-9/12 text-center">
-                        <h2 className="text-lg opacity-50">Total Users  </h2>
+                    <div className="w-full text-center">
+                        <h2 className="text-lg opacity-50 uppercase">Total User</h2>
                         <p className="text-2xl"> {users.length} </p>
                     </div>
                 </div>
-                {/* <div className="flex w-4/12 gap-12">
-                </div>
-                <div className=" w-4/12 text-center ">
-                </div> */}
+             
             </div>
-            <div className='container mx-auto px-4 sm:px-8'>
-        <div className='py-8'>
+            <div className='container mx-auto px-2 sm:px-2'>
+        <div className='py-4'>
           <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto '>
             <div className='inline-block min-w-full shadow rounded-lg overflow-hidden  border'>
               <table className='min-w-full leading-normal'>
@@ -46,14 +43,14 @@ const AllUsers = () => {
                   <tr>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       #
                     </th>
 
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Name
                     </th>
@@ -61,33 +58,33 @@ const AllUsers = () => {
                    
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Email
                     </th>
                     
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Profile Picture
                     </th>
                    
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       role
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Status
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-gray-300 border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300 border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Action
                     </th>
