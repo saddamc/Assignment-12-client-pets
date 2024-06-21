@@ -23,7 +23,7 @@ const Card = ({ pet }) => {
                 transition
               '
             src={pet?.pet_image}
-            alt='Room'
+            alt='Pet'
           />
           <div
             className='
@@ -40,7 +40,7 @@ const Card = ({ pet }) => {
 }
 
 Card.propTypes = {
-  room: PropTypes.object,
+  pet: PropTypes.object,
 }
 
 export default Card

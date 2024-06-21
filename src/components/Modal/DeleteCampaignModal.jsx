@@ -7,7 +7,7 @@ import {
   } from '@headlessui/react'
   import { Fragment } from 'react'
   import PropTypes from 'prop-types'
-  const DeleteAdoptModal = ({ closeModal, isOpen, handleDelete, id }) => {
+  const DeleteCampaignModal = ({ closeModal, isOpen, handleDelete, id }) => {
     return (
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as='div' className='relative z-10' onClose={closeModal}>
@@ -37,7 +37,7 @@ import {
                 <DialogPanel className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all'>
                   <DialogTitle
                     as='h3'
-                    className='text-lg  justify-center text-center font-medium leading-6 text-gray-900'
+                    className='text-lg font-medium justify-center text-center leading-6 text-gray-900'
                   >
                     Are you sure! Want to Remove? Click Delete.
                   </DialogTitle>
@@ -47,8 +47,8 @@ import {
                     </p>
                   </div>
                   <hr className='mt-8 ' />
-                  <div className='flex mt-4 justify-evenly'>
-                  <button
+                  <div className='flex mt-4  justify-evenly'>
+                    <button
                     onClick={() => {
                       handleDelete(id)
                       closeModal()
@@ -75,9 +75,9 @@ import {
     )
   }
   
-  DeleteAdoptModal.propTypes = {
+  DeleteCampaignModal.propTypes = {
     closeModal: PropTypes.func,
     isOpen: PropTypes.bool,
   }
   
-  export default DeleteAdoptModal
+  export default DeleteCampaignModal;

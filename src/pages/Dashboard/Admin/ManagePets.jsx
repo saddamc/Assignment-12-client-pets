@@ -103,20 +103,15 @@ const ManagePets = () => {
                       scope='col'
                       className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
-                        Location
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
-                    >
-                      Age
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
-                    >
                       Adopt
                     </th>
+                    <th
+                      scope='col'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
+                    >
+                        Name & Email <span className="lowercase">(Adopter)</span>
+                    </th>
+                    
                     
                     <th
                       scope='col'
@@ -133,7 +128,7 @@ const ManagePets = () => {
                    
                   </tr>
                 </thead>
-                <tbody>{/* Room row data */}
+                <tbody>{/* Pet row data */}
                 {
                   pets.map((pet, index) => (
                       <ManagePetsRow key={pet._id} pet={pet} index={index} handleDelete={handleDelete} refetch={refetch} />

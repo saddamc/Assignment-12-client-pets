@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import { AiOutlineMenu } from "react-icons/ai";
+import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
@@ -26,17 +27,30 @@ const Navbar = () => {
             </Link>
             {/* Dropdown Menu */}
             <div className='relative'>
-              <div className='flex flex-row items-center gap-3'>
+              <div className='flex flex-row items-center gap-3 md:gap-10'>
                 <div className='hidden md:block'>
                    
-                <Link to='/' >
-                <div
-                          className='disabled:cursor-not-allowed cursor-pointer  text-[#F04336] hover:bg-neutral-100 py-3 px-4 text-sm font-extrabold rounded-full  transition'
-                        >
-                          Home
-                        </div>
-                </Link>
-               
+                    <Link
+                      to='/'
+                      className='block md:hidden px-4 py-3 hover:bg-red-500 transition font-semibold'
+                    >
+                      <p>Home</p>
+                    </Link>
+             
+                </div>
+                <div>
+                   
+                            {
+                    user ? (
+                      <Link
+                        to='/'
+                        // className='block md:hidden px-4 py-3 hover:bg-red-500 transition font-semibold'
+                      >
+                        <button>Donate</button>
+                      </Link>
+                    ) : null
+                  }
+                          
                 </div>
                 {/* Dropdown btn */}
                 <div

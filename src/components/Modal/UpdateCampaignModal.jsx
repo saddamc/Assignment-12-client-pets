@@ -8,12 +8,12 @@ import {
   Transition,
 } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import UpdatePetForm from '../Form/UpdatePetForm'
+import UpdateCampaignForm from '../Form/UpdateCampaignForm'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { imageUpload } from '../../Api/ImageUpload';
 import toast from 'react-hot-toast'
 
-const UpdatePetModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
+const UpdateCampaignModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
   const axiosSecure = useAxiosSecure()
   const [loading, setLoading] = useState(false)
   const [petData, setPetData] = useState(pet)
@@ -47,14 +47,14 @@ const UpdatePetModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
     console.log(updatedPetData)
     try {
       const { data } = await axiosSecure.put(
-        `/pet/update/${pet?._id}`,
+        `/campaign/update/${pet?._id}`,
         updatedPetData
       )
       console.log(data)
       refetch()
       setIsEditModalOpen(false)
       setLoading(false)
-      toast.success('Pet info updated')
+      toast.success('Campaign info updated')
     } catch (err) {
       console.log(err)
       setLoading(false)
@@ -102,8 +102,8 @@ const UpdatePetModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
                   Update Pet Info
                 </DialogTitle>
                 <div className='mt-2 w-full'>
-                  {/* Update pet form */}
-                  <UpdatePetForm
+                  {/* Update Campaign form */}
+                  <UpdateCampaignForm
                     handleSubmit={handleSubmit}
                     petData={petData}
                     loading={loading}
@@ -118,7 +118,7 @@ const UpdatePetModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
                 <div className='mt-2 '>
                   <button
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-[#86ffd5] px-4 py-2 text-sm font-medium text-[#2a8666] hover:bg-[#50c99e] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#36b689] focus-visible:ring-offset-2'
                     onClick={() => setIsEditModalOpen(false)}
                   >
                     Cancel
@@ -133,9 +133,9 @@ const UpdatePetModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
   )
 }
 
-UpdatePetModal.propTypes = {
+UpdateCampaignModal.propTypes = {
   setIsEditModalOpen: PropTypes.func,
   isOpen: PropTypes.bool,
 }
 
-export default UpdatePetModal;
+export default UpdateCampaignModal;

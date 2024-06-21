@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { useState } from 'react';
 import DeleteModal from '../../../../components/Modal/DeleteModal';
 import UpdatePetModal from '../../../../components/Modal/UpdatePetModal';
+import { TiDelete } from 'react-icons/ti';
+import { RxUpdate } from 'react-icons/rx';
 
 const MyPetsRow = ({  pet, handleDelete, refetch }) => {
 
@@ -46,9 +48,9 @@ const MyPetsRow = ({  pet, handleDelete, refetch }) => {
          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
           <span
             aria-hidden='true'
-            className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
+            className='absolute inset-0 bg-red-100 opacity-50 rounded-lg '
           ></span>
-          <span className='relative'>Delete</span>
+          <span className='relative text-4xl text-red-500'> <TiDelete /></span>
         </button>
         {/* Delete modal */}
         <DeleteModal isOpen={isOpen} closeModal={closeModal}
@@ -62,9 +64,9 @@ const MyPetsRow = ({  pet, handleDelete, refetch }) => {
         className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
           <span
             aria-hidden='true'
-            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+            className='absolute inset-0 bg-green-100 opacity-50 rounded-lg'
           ></span>
-          <span className='relative'>Update</span>
+          <span className='relative text-3xl font-bold text-green-500'> <RxUpdate /></span>
         </button>
         {/* Update Modal */}
         <UpdatePetModal 

@@ -5,6 +5,8 @@ import UpdatePetModal from '../../../../components/Modal/UpdatePetModal';
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 
+
+
 const ManagePetsRow = ({  pet, handleDelete, refetch, index }) => {
 
     // for Delete Modal
@@ -13,6 +15,8 @@ const ManagePetsRow = ({  pet, handleDelete, refetch, index }) => {
     const closeModal = () => {
         setIsOpen(false)
     }
+    
+
 
   return (
     <tr>
@@ -38,20 +42,32 @@ const ManagePetsRow = ({  pet, handleDelete, refetch, index }) => {
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>{pet?.category}</p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{pet?.location}</p>
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{pet?.age} Year</p>
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <button className='text-gray-900 whitespace-no-wrap'>
+
+       {/* Adopt Status */}
+       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        <button 
+        // onClick={() => setOpen(true)}
+        className='text-gray-900 whitespace-no-wrap'>
      
         <div>
           {pet?.status === 'adopt' ? <span className='bg-green-500 text-white font-bold px-5 py-2 rounded-lg'>Done</span> : <span className='bg-red-400 text-white font-bold px-3 py-2 rounded-lg'>Waiting</span>}
         </div>
+        {/* Update Adopt Modal */}
+        
+        
         </button>
       </td>
+
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        {
+          pet?.adopter?.name ? <p className='text-gray-900 whitespace-no-wrap'>Name: {pet?.adopter?.name}</p> : <p>- - -</p>
+        }
+        {
+          pet?.adopter?.email ? <p className='text-gray-900 whitespace-no-wrap'>Email: {pet?.adopter?.email}</p> : <p></p>
+        }
+        
+      </td>
+
       {/* DELETE */}
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <button

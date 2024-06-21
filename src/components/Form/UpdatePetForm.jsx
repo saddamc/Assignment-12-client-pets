@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import { categories } from '../Categories/CategoriesData'
-// import { DateRange } from 'react-date-range'
-// import { ImSpinner9 } from 'react-icons/im';
 import { GrUpdate } from "react-icons/gr";
 import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
 

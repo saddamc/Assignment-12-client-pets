@@ -59,7 +59,7 @@ const PetDetails = () => {
 
             {/* 2nd part */}
            <div className='w-1/3 mt-12 '>
-            {/* Room Info */}
+            {/* Pet Info */}
            <div className='space-y-2'>
               <div className='flex flex-col gap-2 w-full space-y-4'>
                 <div

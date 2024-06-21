@@ -86,8 +86,6 @@ const PetButton = () => {
   )
 }
 
-PetButton.propTypes = {
-  room: PropTypes.object,
-}
+
 
 export default PetButton;

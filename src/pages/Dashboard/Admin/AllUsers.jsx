@@ -98,8 +98,7 @@ const AllUsers = () => {
                               )
                     }
 
-
-
+                  
                     </tbody>
               </table>
             </div>
@@ -107,8 +106,6 @@ const AllUsers = () => {
         </div>
       </div>
 
-
-            
         </div>
         </>
     );

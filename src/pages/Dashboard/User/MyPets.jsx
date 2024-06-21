@@ -11,14 +11,14 @@ const MyPets = () => {
     const {user} = useAuth()
 
     // Fetch Pets Data
-    const {data: pets = [], isLoading, refetch} = useQuery({
-        queryKey: ['pets'],
-        queryFn: async () => {
-          const {data} = await axiosSecure.get(`/my-pets/${user?.email}`) 
-          return data
-        }
-      })
-    //   console.log(pets)
+  const {data: pets = [], isLoading, refetch} = useQuery({
+    queryKey: ['pets' ],
+    queryFn: async () => {
+      const {data} = await axiosSecure.get(`/all-pets`)
+      return data
+    }
+  })
+  console.log(pets)
 
     
     // delete database
@@ -64,44 +64,44 @@ const MyPets = () => {
                   <tr>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Name
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Category
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                         Location
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300 border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Age
                     </th>
                     
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Delete
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Update
                     </th>
                   </tr>
                 </thead>
-                <tbody>{/* Room row data */}
+                <tbody>{/* Pet row data */}
                 {
                   pets.map(pet => (
                       <MyPetsRow key={pet._id} pet={pet} handleDelete={handleDelete} refetch={refetch} />

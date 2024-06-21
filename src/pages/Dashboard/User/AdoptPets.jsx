@@ -64,42 +64,42 @@ const AdoptPets = () => {
                   <tr>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Name
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Category
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300   border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                         Location
                     </th>
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300   border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Age
                     </th>
                     
                     <th
                       scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       Delete
                     </th>
                     
                   </tr>
                 </thead>
-                <tbody>{/* Room row data */}
+                <tbody>{/* Pet Adopt row data */}
                 {
-                  adopts.map(pet => (
-                      <MyAdoptRow key={pet._id} pet={pet} handleDelete={handleDelete} refetch={refetch} />
+                  adopts.map(adopt => (
+                      <MyAdoptRow key={adopt._id} adopt={adopt} handleDelete={handleDelete} refetch={refetch} />
                     ))
                 }
                 </tbody>
