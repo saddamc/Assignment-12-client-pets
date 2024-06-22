@@ -10,6 +10,6 @@ export const imageUpload = async image => {
         }`,
     formData
     )
-    // console.log(data.data.display_url, "wait room picture");
+    // console.log(data.data.display_url, "wait pet picture");
     return data.data.display_url;
 }
