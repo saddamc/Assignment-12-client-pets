@@ -31,7 +31,7 @@ const Navbar = () => {
                   {
                     user ? (
                       <Link
-                        to='/'
+                        to='/donation'
                         className='px-4 py-3 bg-green-500 text-white hover:bg-red-500 transition font-semibold'
                       >
                         <button>Donate</button>

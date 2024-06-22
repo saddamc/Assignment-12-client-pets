@@ -19,6 +19,8 @@ import AdminRoute from './AdminRoute'
 import AdoptPets from '../pages/Dashboard/User/AdoptPets'
 import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
 import ManagePets from '../pages/Dashboard/Admin/ManagePets'
+import Donation from '../components/Donation/Donation'
+import Payment from '../components/Dashboard/Payment/Payment'
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +37,22 @@ export const router = createBrowserRouter([
         element: <PetDetails/>,
       },
     ],
+  },
+  {
+    path: 'donation',
+    element: (
+      <PrivateRoute>
+          <Donation />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: 'payment',
+    element: (
+      <PrivateRoute>
+          <Payment />
+      </PrivateRoute>
+    ),
   },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <SignUp /> },
@@ -130,6 +148,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      
       {
         path: 'profile',
         element: (
