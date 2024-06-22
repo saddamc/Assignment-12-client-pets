@@ -6,13 +6,18 @@ import toast from 'react-hot-toast'
 import { ImSpinner9 } from "react-icons/im";
 import { imageUpload } from '../../Api/ImageUpload'
 import { PiUserCirclePlusFill } from "react-icons/pi";
+import Swal from 'sweetalert2'
+import { useState } from 'react'
 
 
 
 const SignUp = () => {
   const navigate = useNavigate()
+  const [registerError, setRegisterError] = useState('');
+  const [success, setSuccess] = useState('');
   const {createUser, signInWithGoogle, updateUserProfile, loginGithub, loading,
     setLoading, saveUser } = useAuth()
+    
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -49,6 +54,50 @@ const SignUp = () => {
       toast.error(err.message)
     }
   }
+
+  setRegisterError('');
+  setSuccess('');
+
+  // password conditions
+  if (password.length < 6) {
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Password must be at least 6 characters !</a>'
+      });
+      return;
+  }
+  else if (!/[A-Z]/.test(password)) {
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Missing Uppercase Letter !</a>'
+      }); ('Must have an ');
+      return;
+  }
+  else if (!/[a-z]/.test(password)) {
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Missing Lowercase Letter !</a>'
+      });
+      return;
+  }
+  else if (!/[0-9]/.test(password)) {
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Missing Numeric key !</a>'
+      });
+      return;
+  }
+
+  
+
 
   // Google SignIn
   const handleGoogleLogin = async () => {

@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import { AiOutlineMenu } from "react-icons/ai";
+import DarkModeToggle from "react-dark-mode-toggle";
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(() => false);
 
+  
   return (
     <div className=' fixed w-full bg-white px-4 z-50  shadow-lg'>
       <div className='py-4 border-b-[1px] '>
@@ -27,6 +30,7 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3 md:gap-10'>
+              
                 <div>
                   {
                     user ? (
@@ -58,7 +62,13 @@ const Navbar = () => {
                     />
                   </div>
                 </div>
+                <DarkModeToggle
+                  onChange={setIsDarkMode}
+                  checked={isDarkMode}
+                  size={80}
+                />
               </div>
+              
               {isOpen && (
                 <div className='absolute rounded-xl  shadow-md w-[40vw] md:w-[10vw] bg-slate-600 text-white overflow-hidden right-0 top-12 text-sm'>
                   <div className='flex flex-col cursor-pointer'>
@@ -104,6 +114,7 @@ const Navbar = () => {
                   </div>
                 </div>
               )}
+              
             </div>
           </div>
         </Container>
