@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { categories } from '../Categories/CategoriesData'
 import { GrUpdate } from "react-icons/gr";
 import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
+import { categories } from '../Categories/CategoriesData';
 
 
 const UpdatePetForm = ({

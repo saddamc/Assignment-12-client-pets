@@ -1,15 +1,13 @@
-import Container from '../Container'
 import { useState } from 'react'
+import { AiOutlineMenu } from "react-icons/ai"
 import { Link } from 'react-router-dom'
-import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
-import { AiOutlineMenu } from "react-icons/ai";
-import DarkModeToggle from "react-dark-mode-toggle";
+import useAuth from '../../../hooks/useAuth'
+import Container from '../Container'
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(() => false);
 
   
   return (
@@ -20,11 +18,11 @@ const Navbar = () => {
             {/* Logo */}
             <Link to='/'>
               <img
-                // className='hidden md:block'
+                className='hidden md:block'
                 src='https://i.ibb.co/0q1jV6N/logo.png'
                 alt='logo'
-                width='100'
-                height='100'
+                width='105'
+                height='40'
               />
             </Link>
             {/* Dropdown Menu */}
@@ -36,7 +34,7 @@ const Navbar = () => {
                     user ? (
                       <Link
                         to='/donation'
-                        className='px-4 py-3 bg-green-500 text-white hover:bg-red-500 transition font-semibold'
+                        className='px-4 py-2.5 rounded-lg bg-green-500 text-white hover:bg-red-500 transition font-semibold'
                       >
                         <button>Donate</button>
                       </Link>
@@ -62,11 +60,7 @@ const Navbar = () => {
                     />
                   </div>
                 </div>
-                <DarkModeToggle
-                  onChange={setIsDarkMode}
-                  checked={isDarkMode}
-                  size={80}
-                />
+                
               </div>
               
               {isOpen && (

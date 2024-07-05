@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
-import PropTypes from 'prop-types'
 import {
   Dialog,
-  TransitionChild,
   DialogPanel,
   DialogTitle,
   Transition,
+  TransitionChild,
 } from '@headlessui/react'
+import PropTypes from 'prop-types'
 import { Fragment, useState } from 'react'
-import UpdateCampaignForm from '../Form/UpdateCampaignForm'
-import useAxiosSecure from '../../hooks/useAxiosSecure'
-import { imageUpload } from '../../Api/ImageUpload';
 import toast from 'react-hot-toast'
+import { imageUpload } from '../../Api/ImageUpload'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
+import UpdateCampaignForm from '../Form/UpdateCampaignForm'
 
 const UpdateCampaignModal = ({ setIsEditModalOpen, isOpen, pet, refetch }) => {
   const axiosSecure = useAxiosSecure()

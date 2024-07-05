@@ -1,17 +1,17 @@
 import { MdOutlinePets } from "react-icons/md";
-import './Inspirational.css';
-import image1 from '../../assets/ins/ins-1.jpg'
-import image2 from '../../assets/ins/ins-2.jpg'
-import image3 from '../../assets/ins/ins-3.jpg'
-import image4 from '../../assets/ins/ins-4.jpg'
-import image5 from '../../assets/ins/ins-5.jpg'
-import image6 from '../../assets/ins/ins-6.jpg'
 import img1 from '../../assets/ins/1.png';
 import img2 from '../../assets/ins/2.png';
 import img3 from '../../assets/ins/3.png';
 import img4 from '../../assets/ins/4.webp';
 import img5 from '../../assets/ins/5.png';
 import img6 from '../../assets/ins/6.png';
+import image1 from '../../assets/ins/ins-1.jpg';
+import image2 from '../../assets/ins/ins-2.jpg';
+import image3 from '../../assets/ins/ins-3.jpg';
+import image4 from '../../assets/ins/ins-4.jpg';
+import image5 from '../../assets/ins/ins-5.jpg';
+import image6 from '../../assets/ins/ins-6.jpg';
+import './Inspirational.css';
 
 
 const Inspirational = () => {

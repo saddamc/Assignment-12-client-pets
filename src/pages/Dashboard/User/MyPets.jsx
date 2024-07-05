@@ -1,10 +1,10 @@
-import { Helmet } from 'react-helmet-async'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { Helmet } from 'react-helmet-async'
+import toast from 'react-hot-toast'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import useAuth from '../../../hooks/useAuth'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import MyPetsRow from './Page/MyPetsRow'
-import toast from 'react-hot-toast'
 
 const MyPets = () => {
     const axiosSecure = useAxiosSecure()
@@ -14,7 +14,7 @@ const MyPets = () => {
   const {data: pets = [], isLoading, refetch} = useQuery({
     queryKey: ['pets' ],
     queryFn: async () => {
-      const {data} = await axiosSecure.get(`/all-pets`)
+      const {data} = await axiosSecure.get(`/my-pets/${user?.email}`)
       return data
     }
   })

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { categories } from '../Categories/CategoriesData'
-import { ImSpinner9 } from 'react-icons/im'
-import { MdCampaign } from "react-icons/md";
+import { ImSpinner9 } from 'react-icons/im';
 import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
+import { MdCampaign } from "react-icons/md";
 import donation from "../../assets/images/donation.jpg";
+import { categories } from '../Categories/CategoriesData';
 
 
 
@@ -72,18 +72,18 @@ const AddCampaign = ({handleSubmit, setImagePreview, imagePreview, handleImage, 
           </div>
 
 
-             {/* Pet Name */}
+             {/* Campaign Name */}
           <div className='space-y-6'>
             <div className='space-y-1 text-sm'>
               <label htmlFor='name' className='block text-gray-600'>
-                Pet Name
+                Campaign Name
               </label>
               <input
                 className='w-full px-4 py-3 text-gray-800 border border-[#36b689] focus:outline-[#049360] rounded-md '
-                name='name'
-                id='name'
+                name='campaign_name'
+                id='campaign_name'
                 type='text'
-                placeholder='Pets Name'
+                placeholder='Campaign Name'
                 required
               />
             </div>

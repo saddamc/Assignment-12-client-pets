@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { TiDelete } from 'react-icons/ti';
 import { RxUpdate } from 'react-icons/rx';
+import { TiDelete } from 'react-icons/ti';
 import DeleteCampaignModal from '../../../../components/Modal/DeleteCampaignModal';
 import UpdateCampaignModal from '../../../../components/Modal/UpdateCampaignModal';
 
@@ -19,7 +19,7 @@ const MyCampaignRow = ({  pet, handleDelete, refetch }) => {
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <div className='text-center mb-4'>
         <div className='mb-3'>
-            <p className='text-gray-900 text-xl font-bold whitespace-no-wrap'>{pet?.pet_name}</p>
+            <p className='text-gray-900 text-xl font-bold whitespace-no-wrap'>{pet?.campaign_name}</p>
           </div>
           <div className='flex-shrink-0'>
             <div className='block relative'>

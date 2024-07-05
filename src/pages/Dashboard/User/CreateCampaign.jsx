@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { imageUpload } from "../../../Api/ImageUpload";
-import useAuth from "../../../hooks/useAuth";
-import { Helmet } from "react-helmet-async";
 import { useMutation } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { imageUpload } from "../../../Api/ImageUpload";
 import AddCampaign from "../../../components/Form/AddCampaign";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const CreateCampaign = () => {
@@ -38,7 +38,7 @@ const CreateCampaign = () => {
     setLoading(true)
     const form = e.target
     const category = form.category.value
-    const pet_name = form.name.value;
+    const campaign_name = form.campaign_name.value;
     const maxDonation = form.maxDonation.value;
     const lastDate = form.lastDate.value;
     const shortDescription = form.shortDescription.value;
@@ -54,7 +54,7 @@ const CreateCampaign = () => {
       const image_url = await imageUpload(pet_image)
       const petData = {
         category, 
-        pet_name,
+        campaign_name,
         maxDonation, 
         lastDate, 
         shortDescription, 

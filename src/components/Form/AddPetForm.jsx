@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { categories } from '../Categories/CategoriesData'
-import { ImSpinner9 } from 'react-icons/im'
 import { BsPersonFillAdd } from "react-icons/bs";
+import { ImSpinner9 } from 'react-icons/im';
 import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
+import { categories } from '../Categories/CategoriesData';
 
 
 

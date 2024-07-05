@@ -1,10 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { MdCampaign } from "react-icons/md";
-import LoadingSpinner from "../Shared/LoadingSpinner";
-import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 import DonationRow from "./DonationRow";
 
 
@@ -15,15 +15,15 @@ const Donation = () => {
   const category = params.get('category')
   console.log(category)
 
-  // Fetch Pets Data
-  const {data: pets = [], isLoading, refetch} = useQuery({
+  // Fetch Campaigns Data
+  const {data: campaigns = [], isLoading, refetch} = useQuery({
     queryKey: ['pets' ],
     queryFn: async () => {
       const {data} = await axiosSecure.get(`/all-campaign`)
       return data
     }
   })
-  console.log(pets)
+  console.log(campaigns)
 
     
   
@@ -43,7 +43,7 @@ const Donation = () => {
                       </div>
                       <div className="w-full text-center">
                           <h2 className="text-lg opacity-80 text-white uppercase">Total Campaign</h2>
-                          {/* <p className="text-2xl"> {pets.length} </p> */}
+                          <p className="text-2xl font-bold text-white"> {campaigns.length} </p>
                       </div>
                   </div>
                
@@ -68,7 +68,7 @@ const Donation = () => {
                         scope='col'
                         className='px-5 py-3 bg-gray-300 border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                       >
-                        Pet Name
+                        Campaign Name & Image
                       </th>
                       <th
                         scope='col'
@@ -106,10 +106,10 @@ const Donation = () => {
                      
                     </tr>
                   </thead>
-                  <tbody>{/* Pet row data */}
+                  <tbody>{/* Campaign row data */}
                   {
-                    pets.map((pet, index) => (
-                        <DonationRow key={pet._id} pet={pet} index={index} refetch={refetch} />
+                    campaigns.map((campaign, index) => (
+                        <DonationRow key={campaign._id} campaign={campaign} index={index} refetch={refetch} />
                       ))
                   }
                   </tbody>
