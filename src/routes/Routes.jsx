@@ -6,7 +6,6 @@ import Overview from '../pages/Dashboard/Common/Overview'
 import Profile from '../pages/Dashboard/Common/Profile'
 import AddPet from '../pages/Dashboard/User/AddPet'
 import CreateCampaign from '../pages/Dashboard/User/CreateCampaign'
-import MyDonation from '../pages/Dashboard/User/MyDonation'
 import MyPets from '../pages/Dashboard/User/MyPets'
 import ErrorPage from '../pages/ErrorPage'
 import Home from '../pages/Home/Home'
@@ -22,6 +21,7 @@ import DonationDetails from '../components/Donation/DonationDetails'
 import ManagePets from '../pages/Dashboard/Admin/ManagePets'
 import AdoptPets from '../pages/Dashboard/User/AdoptPets'
 import MyCampaigns from '../pages/Dashboard/User/MyCampaigns'
+import MyDonation from '../pages/Dashboard/User/MyDonation'
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         path: '/pet/:id',
         element: <PetDetails/>,
       },
-      // Donation & payment
+      // Donation 
 
       {
         path: 'donation',
@@ -52,14 +52,6 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
               <DonationDetails />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'payment',
-        element: (
-          <PrivateRoute>
-              <Payment />
           </PrivateRoute>
         ),
       },
@@ -144,7 +136,16 @@ export const router = createBrowserRouter([
         path: 'my-donations',
         element: (
           <PrivateRoute>
-              <MyDonation />
+            <MyDonation />
+          </PrivateRoute>
+        ),
+      },
+      // payment
+      {
+        path: 'payment',
+        element: (
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         ),
       },
@@ -157,9 +158,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-
-      
     ],
   }
 ])

@@ -3,11 +3,14 @@ import { AiOutlineMenu } from "react-icons/ai"
 import { Link } from 'react-router-dom'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import useAuth from '../../../hooks/useAuth'
+import useDonate from '../../../hooks/useDonate'
 import Container from '../Container'
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
+  const [donate, refetch, isLoading] = useDonate()
   const [isOpen, setIsOpen] = useState(false)
+
 
   
   return (
@@ -29,14 +32,24 @@ const Navbar = () => {
             <div className='relative'>
               <div className='flex flex-row items-center gap-3 md:gap-10'>
               
-                <div>
+                <div className='flex'>
                   {
                     user ? (
                       <Link
                         to='/donation'
-                        className='px-4 py-2.5 rounded-lg bg-green-500 text-white hover:bg-red-500 transition font-semibold'
+                        className='px-4 py-2.5 rounded-lg bg-green-500 text-white hover:bg-yellow-500 transition font-semibold'
                       >
-                        <button>Donate</button>
+                        <button className='flex'>
+                          Donate 
+                          {
+                            donate.length ?
+                            <Link to="/dashboard/my-donations">
+                            <div className='bg-red-400 text-white ml-2 px-1.5 py-0.5 rounded-xl'>+{donate.length} </div>
+                            </Link>
+                            :
+                            null
+                          }
+                        </button>
                       </Link>
                     ) : null
                   }

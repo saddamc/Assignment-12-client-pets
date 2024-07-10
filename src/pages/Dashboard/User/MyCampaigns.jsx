@@ -1,9 +1,9 @@
-import { Helmet } from 'react-helmet-async'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { Helmet } from 'react-helmet-async'
+import toast from 'react-hot-toast'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import useAuth from '../../../hooks/useAuth'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
-import toast from 'react-hot-toast'
 import MyCampaignRow from './Page/MyCampaignRow'
 
 const MyCampaigns = () => {
@@ -11,14 +11,14 @@ const MyCampaigns = () => {
     const {user} = useAuth()
 
     // Fetch Pets Data
-    const {data: pets = [], isLoading, refetch} = useQuery({
-        queryKey: ['pets'],
+    const {data: campaign = [], isLoading, refetch} = useQuery({
+        queryKey: ['campaign'],
         queryFn: async () => {
           const {data} = await axiosSecure.get(`/my-campaign/${user?.email}`) 
           return data
         }
       })
-      console.log(pets)
+      console.log(campaign)
 
     
     // delete database
@@ -68,7 +68,13 @@ const MyCampaigns = () => {
                       scope='col'
                       className='px-5 py-3 text-center bg-gray-300  border-b border-gray-200 text-gray-800  text-sm uppercase font-bold'
                     >
-                      Name & Image
+                      Campaign Name & Image
+                    </th>
+                    <th
+                      scope='col'
+                      className='px-5 py-3 text-center bg-gray-300  border-b border-gray-200 text-gray-800  text-sm uppercase font-bold'
+                    >
+                      Pet Name
                     </th>
 
                     <th
@@ -82,14 +88,14 @@ const MyCampaigns = () => {
                       scope='col'
                       className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
-                      Donated Amount
+                      Campaign Target
                     </th>
 
                     <th
                       scope='col'
                       className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
-                      Refund Donated
+                      Donate Amount
                     </th>
                    
                     
@@ -109,8 +115,8 @@ const MyCampaigns = () => {
                 </thead>
                 <tbody>{/* Pet Campaign row data */}
                 {
-                  pets.map(pet => (
-                      <MyCampaignRow key={pet._id} pet={pet} handleDelete={handleDelete} refetch={refetch} />
+                  campaign.map(campaign => (
+                      <MyCampaignRow key={campaign._id} campaign={campaign} handleDelete={handleDelete} refetch={refetch} />
                     ))
                 }
                 </tbody>

@@ -1,8 +1,8 @@
+import axios from 'axios'
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import PropTypes from 'prop-types'
 import { createContext, useEffect, useState } from 'react'
-import {GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
-import axios from 'axios'
 import useAxiosCommon from '../hooks/useAxiosCommon'
 
 
@@ -70,9 +70,9 @@ const AuthProvider = ({ children }) => {
   // }
 
   // save user
-  const saveUser = async (user, image_url) =>{
+  const saveUser = async (user, name, image_url) =>{
     const currentUser = {
-      name: user?.displayName,
+      name: user?.displayName || name,
       email: user?.email,
       image: user?.photoURL || image_url,
       role: 'User',

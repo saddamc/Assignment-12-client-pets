@@ -86,7 +86,7 @@ const Donation = () => {
                         scope='col'
                         className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                       >
-                          Maximum Donation
+                          Campaign Target
                       </th>
 
                       <th

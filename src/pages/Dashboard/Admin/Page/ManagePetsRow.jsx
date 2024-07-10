@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { RxUpdate } from "react-icons/rx";
+import { TiDelete } from "react-icons/ti";
 import DeleteModal from '../../../../components/Modal/DeleteModal';
 import UpdatePetModal from '../../../../components/Modal/UpdatePetModal';
-import { TiDelete } from "react-icons/ti";
-import { RxUpdate } from "react-icons/rx";
 
 
 
@@ -45,7 +45,7 @@ const ManagePetsRow = ({  pet, handleDelete, refetch, index }) => {
 
        {/* Adopt Status */}
        <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <button 
+        <p 
         // onClick={() => setOpen(true)}
         className='text-gray-900 whitespace-no-wrap'>
      
@@ -55,7 +55,7 @@ const ManagePetsRow = ({  pet, handleDelete, refetch, index }) => {
         {/* Update Adopt Modal */}
         
         
-        </button>
+        </p>
       </td>
 
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>

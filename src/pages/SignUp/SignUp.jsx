@@ -1,13 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
-import { FaGithub } from 'react-icons/fa'
-import useAuth from '../../hooks/useAuth'
-import toast from 'react-hot-toast'
-import { ImSpinner9 } from "react-icons/im";
-import { imageUpload } from '../../Api/ImageUpload'
-import { PiUserCirclePlusFill } from "react-icons/pi";
-import Swal from 'sweetalert2'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
+import { FaGithub } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
+import { ImSpinner9 } from "react-icons/im"
+import { PiUserCirclePlusFill } from "react-icons/pi"
+import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import { imageUpload } from '../../Api/ImageUpload'
+import useAuth from '../../hooks/useAuth'
 
 
 
@@ -43,7 +43,7 @@ const SignUp = () => {
       
       //  3. Save username and photo in mongoDB
       await updateUserProfile(name, image_url)
-      await saveUser({displayName: name, email: email}, image_url)
+      await saveUser({displayName: name, email: email, photoURL:image_url})
       navigate('/')
       toast.success('Signup Successful')
 
@@ -53,7 +53,7 @@ const SignUp = () => {
       console.log(err)
       toast.error(err.message)
     }
-  }
+  
 
   setRegisterError('');
   setSuccess('');
@@ -96,7 +96,7 @@ const SignUp = () => {
       return;
   }
 
-  
+}
 
 
   // Google SignIn

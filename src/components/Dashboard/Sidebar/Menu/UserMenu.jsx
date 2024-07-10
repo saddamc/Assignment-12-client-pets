@@ -1,10 +1,10 @@
-import { RiStickyNoteAddFill } from "react-icons/ri";
-import MenuItem from "./MenuItem";
+import { BiSolidDonateHeart } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
+import { MdOutlineCampaign } from "react-icons/md";
+import { RiStickyNoteAddFill } from "react-icons/ri";
 import { SiEclipseadoptium } from "react-icons/si";
 import { VscGitPullRequestCreate } from "react-icons/vsc";
-import { MdOutlineCampaign } from "react-icons/md";
-import { BiSolidDonateHeart } from "react-icons/bi";
+import MenuItem from "./MenuItem";
 
 
 const UserMenu = () => {

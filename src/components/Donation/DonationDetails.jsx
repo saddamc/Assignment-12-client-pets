@@ -1,10 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { BiIdCard, BiSolidDetail } from "react-icons/bi";
 import { ImSpinner9 } from "react-icons/im";
 import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import "./DonationDetails";
 
@@ -12,12 +15,13 @@ import "./DonationDetails";
 const DonationDetails = () => {
     const {id} = useParams()
     const axiosCommon = useAxiosCommon()
+    const axiosSecure = useAxiosSecure()
+    const {user} = useAuth()
+    const navigate = useNavigate()
 
-    const [email, setEmail] = useState('');
-    const [cardHolder, setCardHolder] = useState('');
     const [cardDetails, setCardDetails] = useState('');
     const [expiryDate, setExpiryDate] = useState('');
-    const [cvv, setCvv] = useState('');
+    const [cvc, setCvc] = useState('');
     const [Donate, setDonate] = useState('');
     const [loading, setLoading] = useState(false)
 
@@ -30,12 +34,72 @@ const DonationDetails = () => {
     })
     console.log(campaign)
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission logic here
-        console.log({ email, cardHolder, cardDetails, expiryDate, cvv, Donate });
-      };
+    // payment data send in server
+    const {mutateAsync} = useMutation({
+      mutationFn: async donateData => {
+        const {data} = await axiosSecure.post('/donation', donateData)
+        return data;
+      },
+      onSuccess: () =>{
+        console.log('Donation Saved Successfully')
+        toast.success('Donation Added Successfully')
+        navigate('/dashboard/my-donations')
+        setLoading(false)
+      } 
+    })
+   
 
+       // Form handler
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setLoading(true)
+    const form = e.target
+    const email = form.email.value
+    const cardHolder = form.cardHolder.value;
+    const cardDetails = form.cardDetails.value;
+    const expiryDate = form.expiryDate.value;
+    const cvc = form.cvc.value;
+    const Donate = form.Donate.value;
+    const donateId = campaign?._id;
+    const pet_image = campaign?.pet_image;
+    const status = "pending";
+    const User = {
+      name: user?.displayName,
+      image: user?.photoURL,
+      email: user?.email,
+    }
+
+    try{
+      const donateData = {
+        email, 
+        cardHolder, 
+        cardDetails, 
+        expiryDate, 
+        cvc, 
+        Donate,  
+        donateId,
+        pet_image,
+        status,
+        User
+      }
+      console.table(donateData)
+
+      // Post request to server
+      await mutateAsync(donateData)
+
+    } catch (err) {
+      console.log(err)
+      toast.error(err.message)
+      setLoading(false)
+    }
+  
+  }
+
+
+
+
+
+      // form digit dynamic
       const formatCardNumber = (value) => {
         return value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1-').substr(0, 19);
     };
@@ -69,10 +133,17 @@ const DonationDetails = () => {
         }
     };
 
-    const handleCVVChange = (e) => {
+    const handleCVCChange = (e) => {
         const cleanedValue = e.target.value.replace(/\D/g, '').substr(0, 3);
-        setCvv(cleanedValue);
+        setCvc(cleanedValue);
     };
+
+    const handleDonationAmountChange = (e) => {
+      const cleanedValue = e.target.value.replace(/[^\d.]/g, '');
+      const formattedValue = cleanedValue ? `$${parseFloat(cleanedValue).toFixed(2)}` : '';
+      setDonate(formattedValue);
+  };
+
 
 
     
@@ -134,8 +205,8 @@ const DonationDetails = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                // value={email}
+                // onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
               />
@@ -151,8 +222,8 @@ const DonationDetails = () => {
                 type="text"
                 id="cardHolder"
                 name="cardHolder"
-                value={cardHolder}
-                onChange={(e) => setCardHolder(e.target.value)}
+                // value={cardHolder}
+                // onChange={(e) => setCardHolder(e.target.value)}
                 placeholder="Card Holder"
                 required
               />
@@ -168,8 +239,8 @@ const DonationDetails = () => {
               <input
                 className='w-1/2 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
                 type="text"
-                id="card-details"
-                name="card-details"
+                id="cardDetails"
+                name="cardDetails"
                 value={cardDetails}
                 onChange={handleCardDetailsChange}
                 placeholder="XXXX-XXXX-XXXX-XXXX"
@@ -180,8 +251,8 @@ const DonationDetails = () => {
             <input
                 className='w-1/4 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
                 type="text"
-                id="expiry-date"
-                name="expiry-date"
+                id="expiryDate"
+                name="expiryDate"
                 value={expiryDate}
                 onChange={handleExpiryDateChange}
                 placeholder="MM/YY"
@@ -191,26 +262,27 @@ const DonationDetails = () => {
             <input
                 className='w-1/4 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
                 type="text"
-                id="cvv"
-                name="cvv"
-                value={cvv}
-                onChange={handleCVVChange}
-                placeholder="CVV"
+                id="cvc"
+                name="cvc"
+                value={cvc}
+                onChange={handleCVCChange}
+                placeholder="CVC"
                 required
             />
 
             </div>
 
             <div className='space-y-1 text-sm'>
-              <label htmlFor='donate' className='block text-gray-600'>
-                Donate
+              <label htmlFor='Donate' className='block text-gray-600'>
+                Donate Amount
               </label>
               <input
                 className='w-1/4 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
                 type="number"
-                id="donate"
-                name="donate"
-                onChange={(e) => setDonate(e.target.value)}
+                id="Donate"
+                name="Donate"
+                // value={Donate}
+                onChange={handleDonationAmountChange}
                 placeholder="$"
                 required
               />

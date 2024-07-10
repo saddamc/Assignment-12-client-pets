@@ -5,7 +5,7 @@ import { TiDelete } from 'react-icons/ti';
 import DeleteCampaignModal from '../../../../components/Modal/DeleteCampaignModal';
 import UpdateCampaignModal from '../../../../components/Modal/UpdateCampaignModal';
 
-const MyCampaignRow = ({  pet, handleDelete, refetch }) => {
+const MyCampaignRow = ({  campaign, handleDelete, refetch }) => {
 
     // for Delete Modal
     let [isOpen, setIsOpen] = useState(false)
@@ -19,13 +19,13 @@ const MyCampaignRow = ({  pet, handleDelete, refetch }) => {
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <div className='text-center mb-4'>
         <div className='mb-3'>
-            <p className='text-gray-900 text-xl font-bold whitespace-no-wrap'>{pet?.campaign_name}</p>
+            <p className='text-gray-900 text-xl font-bold whitespace-no-wrap'>{campaign?.campaign_name}</p>
           </div>
           <div className='flex-shrink-0'>
             <div className='block relative'>
               <img
                 alt='profile'
-                src={pet?.pet_image}
+                src={campaign?.pet_image}
                 className='mx-auto object-cover rounded h-24 w-34 '
               />
             </div>
@@ -34,15 +34,18 @@ const MyCampaignRow = ({  pet, handleDelete, refetch }) => {
         </div>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{pet?.lastDate}</p>
+        <p className='text-gray-900 whitespace-no-wrap'>{campaign?.pet_name}</p>
+      </td>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        <p className='text-gray-900 whitespace-no-wrap'>{campaign?.lastDate}</p>
       </td>
 
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{pet?.donation}</p>
+        <p className='text-gray-900 font-bold whitespace-no-wrap'>${campaign?.maxDonation}.00</p>
       </td>
       
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{pet?.status}</p>
+        <p className='text-gray-900 whitespace-no-wrap'>{campaign?.status}</p>
       </td>
      
       
@@ -59,7 +62,7 @@ const MyCampaignRow = ({  pet, handleDelete, refetch }) => {
         {/* Delete modal */}
         <DeleteCampaignModal isOpen={isOpen} closeModal={closeModal}
         handleDelete={handleDelete}
-        id={pet?._id}
+        id={campaign?._id}
          />
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -74,7 +77,7 @@ const MyCampaignRow = ({  pet, handleDelete, refetch }) => {
         </button>
         {/* Update Modal */}
         <UpdateCampaignModal 
-        pet={pet}
+        pet={campaign}
         refetch={refetch}
         isOpen={isEditModalOpen}
         setIsEditModalOpen={setIsEditModalOpen}
