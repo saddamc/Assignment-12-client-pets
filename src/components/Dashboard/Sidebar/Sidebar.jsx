@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { GrLogout } from 'react-icons/gr'
-import { FcSettings } from 'react-icons/fc'
-import { AiOutlineBars } from 'react-icons/ai'
-import { BsGraphUp } from 'react-icons/bs'
-import useAuth from '../../../hooks/useAuth'
-import UserModal from '../../Modal/UserModal'
 import toast from 'react-hot-toast'
+import { AiOutlineBars } from 'react-icons/ai'
+import { FaChartPie } from 'react-icons/fa'
+import { FcSettings } from 'react-icons/fc'
+import { GrLogout } from 'react-icons/gr'
+import useAdmin from '../../../hooks/useAdmin'
+import useAuth from '../../../hooks/useAuth'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import useRole from '../../../hooks/useRole'
+import UserModal from '../../Modal/UserModal'
+import AdminMenu from './Menu/AdminMenu'
 import MenuItem from './Menu/MenuItem'
 import UserMenu from './Menu/UserMenu'
-import AdminMenu from './Menu/AdminMenu'
-import useAdmin from '../../../hooks/useAdmin'
 
 
 const Sidebar = () => {
@@ -113,19 +113,20 @@ const Sidebar = () => {
               />
 
                {/* Overview */}
-               <MenuItem label='Overview' address='/dashboard' icon={BsGraphUp} />
+               <MenuItem label='Dashboard' address='/dashboard' icon={FaChartPie} />
 
                {role === 'User' &&  <UserMenu /> }
                
               
 
-               {role === 'Admin' ?
+               {role === 'Admin' &&
                 <>
                 <UserMenu />
                 <hr />
                 <AdminMenu />
-               </>  :
-                <UserMenu /> }
+               </>  
+              }
+
 
 
 </nav>

@@ -1,9 +1,14 @@
+import useRole from "../../../hooks/useRole";
+import AdminHome from "./Overview/AdminHome";
+import UserHome from "./Overview/UserHome";
 
 
 const Overview = () => {
+    const [role, isLoading] = useRole()
     return (
         <div>
-            <h1> Overview page for user & Admin</h1>
+            {role === 'Admin' &&  <AdminHome /> }
+            {role === 'User' &&  <UserHome /> }
         </div>
     );
 };

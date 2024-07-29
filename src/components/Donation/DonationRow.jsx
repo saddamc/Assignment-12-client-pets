@@ -43,7 +43,7 @@ const DonationRow = ({  campaign, refetch, index }) => {
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         {/* add how much donate here */}
-        {/* <p className='text-gray-900 whitespace-no-wrap'>${campaign?.maxDonation}.00</p> */}
+        <p className='text-gray-900 whitespace-no-wrap'>${campaign?.maxDonation}.00</p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
        <Link to={`/donation/${campaign?._id}`}>

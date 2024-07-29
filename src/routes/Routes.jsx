@@ -55,6 +55,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+       // payment
+       {
+        path: 'payment',
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   
@@ -140,15 +149,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // payment
-      {
-        path: 'payment',
-        element: (
-          <PrivateRoute>
-            <Payment />
-          </PrivateRoute>
-        ),
-      },
+     
       
       {
         path: 'profile',

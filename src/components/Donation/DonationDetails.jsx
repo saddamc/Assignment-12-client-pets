@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useDonate from "../../hooks/useDonate";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import "./DonationDetails";
 
@@ -18,11 +19,8 @@ const DonationDetails = () => {
     const axiosSecure = useAxiosSecure()
     const {user} = useAuth()
     const navigate = useNavigate()
+    const [donate] = useDonate()
 
-    const [cardDetails, setCardDetails] = useState('');
-    const [expiryDate, setExpiryDate] = useState('');
-    const [cvc, setCvc] = useState('');
-    const [Donate, setDonate] = useState('');
     const [loading, setLoading] = useState(false)
 
     const { data: campaign = {}, isLoading } = useQuery({
@@ -43,7 +41,7 @@ const DonationDetails = () => {
       onSuccess: () =>{
         console.log('Donation Saved Successfully')
         toast.success('Donation Added Successfully')
-        navigate('/dashboard/my-donations')
+        navigate('/payment')
         setLoading(false)
       } 
     })
@@ -52,17 +50,17 @@ const DonationDetails = () => {
        // Form handler
   const handleSubmit = async e => {
     e.preventDefault()
+    if (donate.length >= 1) {
+      toast.error("Please complete your payment first, then make another donation.");
+      return;
+  }
     setLoading(true)
     const form = e.target
-    const email = form.email.value
-    const cardHolder = form.cardHolder.value;
-    const cardDetails = form.cardDetails.value;
-    const expiryDate = form.expiryDate.value;
-    const cvc = form.cvc.value;
+    const note = form.note.value
     const Donate = form.Donate.value;
-    const donateId = campaign?._id;
-    const pet_image = campaign?.pet_image;
-    const status = "pending";
+    const campaignId = campaign?._id;
+    const campaign_image = campaign?.pet_image;
+    const status = "waiting for payment";
     const User = {
       name: user?.displayName,
       image: user?.photoURL,
@@ -71,14 +69,10 @@ const DonationDetails = () => {
 
     try{
       const donateData = {
-        email, 
-        cardHolder, 
-        cardDetails, 
-        expiryDate, 
-        cvc, 
+        note, 
         Donate,  
-        donateId,
-        pet_image,
+        campaignId,
+        campaign_image,
         status,
         User
       }
@@ -99,54 +93,6 @@ const DonationDetails = () => {
 
 
 
-      // form digit dynamic
-      const formatCardNumber = (value) => {
-        return value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1-').substr(0, 19);
-    };
-
-    const handleCardDetailsChange = (e) => {
-        const formattedCardNumber = formatCardNumber(e.target.value);
-        setCardDetails(formattedCardNumber);
-
-        if (formattedCardNumber.replace(/-/g, '').length >= 16) {
-            document.getElementById('expiry-date').focus();
-        }
-    };
-
-    const formatExpiryDate = (value) => {
-        const cleanedValue = value.replace(/\D/g, '');
-        if (cleanedValue.length <= 2) {
-            return cleanedValue;
-        } else if (cleanedValue.length <= 4) {
-            return `${cleanedValue.substr(0, 2)}/${cleanedValue.substr(2, 2)}`;
-        } else {
-            return `${cleanedValue.substr(0, 2)}/${cleanedValue.substr(2, 2)}`;
-        }
-    };
-
-    const handleExpiryDateChange = (e) => {
-        const formattedExpiryDate = formatExpiryDate(e.target.value);
-        setExpiryDate(formattedExpiryDate);
-
-        if (formattedExpiryDate.length >= 5) {
-            document.getElementById('cvv').focus();
-        }
-    };
-
-    const handleCVCChange = (e) => {
-        const cleanedValue = e.target.value.replace(/\D/g, '').substr(0, 3);
-        setCvc(cleanedValue);
-    };
-
-    const handleDonationAmountChange = (e) => {
-      const cleanedValue = e.target.value.replace(/[^\d.]/g, '');
-      const formattedValue = cleanedValue ? `$${parseFloat(cleanedValue).toFixed(2)}` : '';
-      setDonate(formattedValue);
-  };
-
-
-
-    
 
     if(isLoading) return <LoadingSpinner />
 
@@ -195,83 +141,22 @@ const DonationDetails = () => {
          
           <div className='space-y-2'>
 
-             {/* Email */}
+             {/* Donation Note */}
             <div className='space-y-1 text-sm'>
               <label htmlFor='name' className='block text-gray-600'>
-                Email
-              </label>
-              <input
-                className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
-                type="email"
-                id="email"
-                name="email"
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                required
-              />
-            </div>
-
-             {/* Card Holder */}
-            <div className='space-y-1 text-sm'>
-              <label htmlFor='cardHolder' className='block text-gray-600'>
-                Card Holder
+               Donation Note
               </label>
               <input
                 className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
                 type="text"
-                id="cardHolder"
-                name="cardHolder"
-                // value={cardHolder}
-                // onChange={(e) => setCardHolder(e.target.value)}
-                placeholder="Card Holder"
+                id="note"
+                name="note"
+                placeholder="Note"
                 required
               />
             </div>
 
-           {/* Card Details */}
-
-
-            <div className='space-y-1 text-sm'>
-              <label htmlFor='card-details' className='block text-gray-600'>
-                Card Details
-              </label>
-              <input
-                className='w-1/2 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
-                type="text"
-                id="cardDetails"
-                name="cardDetails"
-                value={cardDetails}
-                onChange={handleCardDetailsChange}
-                placeholder="XXXX-XXXX-XXXX-XXXX"
-                required
-              />
-              
-
-            <input
-                className='w-1/4 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
-                type="text"
-                id="expiryDate"
-                name="expiryDate"
-                value={expiryDate}
-                onChange={handleExpiryDateChange}
-                placeholder="MM/YY"
-                required
-              />
-
-            <input
-                className='w-1/4 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
-                type="text"
-                id="cvc"
-                name="cvc"
-                value={cvc}
-                onChange={handleCVCChange}
-                placeholder="CVC"
-                required
-            />
-
-            </div>
-
+      {/* Donation Amount */}
             <div className='space-y-1 text-sm'>
               <label htmlFor='Donate' className='block text-gray-600'>
                 Donate Amount
@@ -281,15 +166,11 @@ const DonationDetails = () => {
                 type="number"
                 id="Donate"
                 name="Donate"
-                // value={Donate}
-                onChange={handleDonationAmountChange}
                 placeholder="$"
                 required
               />
             </div>
 
-           
-           
 
           </div>
         </div>

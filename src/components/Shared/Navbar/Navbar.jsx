@@ -37,13 +37,13 @@ const Navbar = () => {
                     user ? (
                       <Link
                         to='/donation'
-                        className='px-4 py-2.5 rounded-lg bg-green-500 text-white hover:bg-yellow-500 transition font-semibold'
+                        className='px-4 py-2.5 rounded-lg bg-green-500 font-extrabold text-lg text-black hover:bg-yellow-500 transition'
                       >
                         <button className='flex'>
                           Donate 
                           {
                             donate.length ?
-                            <Link to="/dashboard/my-donations">
+                            <Link to="/payment">
                             <div className='bg-red-400 text-white ml-2 px-1.5 py-0.5 rounded-xl'>+{donate.length} </div>
                             </Link>
                             :
