@@ -87,14 +87,14 @@ const DonationRow = ({  campaign, refetch, index, progressData }) => {
       
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
        { isPaymentComplete ? (
-        <p className='text-green-500 font-bold text-xl text-center'>Completed</p>
+        <p className='bg-green-500 py-2 text-white rounded-full mx-4 font-bold text-lg text-center'>Complete</p>
        ) : isDateExpired ? (
-        <p className='text-red-500 font-bold text-xl text-center'>Expire</p>
+        <p className='bg-red-500 py-2 text-white rounded-full mx-4 font-bold text-lg text-center'>Expire</p>
        ) : (
         <Link to={`/donation/${campaign?._id}`}>
           <button 
           disabled={isPaymentComplete || isDateExpired}
-          className='text-4xl flex bg-[#5186D5] text-center mx-auto px-4 py-1 font-bold rounded-full text-white justify-center items-center hover:bg-rose-500'> <span className='text-xl mr-2'>$Pay</span> <FcDonate /> 
+          className='text-4xl flex bg-[#5186D5] text-center mx-auto px-4 py-1 font-bold rounded-full text-white justify-center items-center hover:bg-[#205bb4]'> <span className='text-xl mr-2'>$Pay</span> <FcDonate /> 
           </button>
         </Link>
         )}

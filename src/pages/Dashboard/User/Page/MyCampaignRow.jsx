@@ -1,11 +1,14 @@
+import { useQuery } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { RxUpdate } from 'react-icons/rx';
 import { TiDelete } from 'react-icons/ti';
 import DeleteCampaignModal from '../../../../components/Modal/DeleteCampaignModal';
 import UpdateCampaignModal from '../../../../components/Modal/UpdateCampaignModal';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const MyCampaignRow = ({  campaign, handleDelete, refetch }) => {
+  const axiosSecure = useAxiosSecure()
 
     // for Delete Modal
     let [isOpen, setIsOpen] = useState(false)
@@ -13,6 +16,20 @@ const MyCampaignRow = ({  campaign, handleDelete, refetch }) => {
     const closeModal = () => {
         setIsOpen(false)
     }
+
+
+    const {data: progressData = [] } = useQuery({
+      queryKey: ['progress-stats'],
+      queryFn: async () => {
+        const {data} = await axiosSecure.get('/progress-stats');
+        return data;
+      }
+    })
+    console.log(progressData)
+  
+  
+    const matchingProgress = progressData.find(data => data?._id === campaign?._id)
+    refetch()
 
   return (
     <tr>
@@ -33,9 +50,9 @@ const MyCampaignRow = ({  campaign, handleDelete, refetch }) => {
           
         </div>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      {/* <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>{campaign?.pet_name}</p>
-      </td>
+      </td> */}
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>{campaign?.lastDate}</p>
       </td>
@@ -45,20 +62,30 @@ const MyCampaignRow = ({  campaign, handleDelete, refetch }) => {
       </td>
       
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{campaign?.status}</p>
+        {
+          matchingProgress?.totalDonate > 0 ?
+          <p className='text-gray-900 font-bold whitespace-no-wrap'>${matchingProgress?.totalDonate}.00</p> : 0
+        }
       </td>
      
       
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <button
-        onClick={() => setIsOpen(true)}
-         className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
-          <span
-            aria-hidden='true'
-            className='absolute inset-0 bg-red-100 opacity-50 rounded-lg '
-            ></span>
-            <span className='relative text-4xl text-red-500'> <TiDelete /></span>
-        </button>
+        {
+          matchingProgress?.totalDonate > 0 ?
+          <button 
+            disabled >
+          </button> 
+          :
+          <button
+          onClick={() => setIsOpen(true)}
+           className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+            <span
+              aria-hidden='true'
+              className='absolute inset-0 bg-red-100 opacity-50 rounded-lg '
+              ></span>
+              <span className='relative text-4xl text-red-500'> <TiDelete /></span>
+          </button>
+        }
         {/* Delete modal */}
         <DeleteCampaignModal isOpen={isOpen} closeModal={closeModal}
         handleDelete={handleDelete}

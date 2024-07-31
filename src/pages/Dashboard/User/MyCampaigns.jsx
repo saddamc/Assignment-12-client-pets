@@ -70,12 +70,12 @@ const MyCampaigns = () => {
                     >
                       Campaign Name & Image
                     </th>
-                    <th
+                    {/* <th
                       scope='col'
                       className='px-5 py-3 text-center bg-gray-300  border-b border-gray-200 text-gray-800  text-sm uppercase font-bold'
                     >
                       Pet Name
-                    </th>
+                    </th> */}
 
                     <th
                       scope='col'
@@ -88,14 +88,14 @@ const MyCampaigns = () => {
                       scope='col'
                       className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
-                      Campaign Target
+                      Target
                     </th>
 
                     <th
                       scope='col'
                       className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
-                      Donate Amount
+                      Donate
                     </th>
                    
                     

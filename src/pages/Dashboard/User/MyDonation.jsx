@@ -34,7 +34,7 @@ const MyDonation = () => {
                         <p className="px-4 py-3 bg-green-500 rounded-lg shadow-lg font-bold text-3xl"><BiMoney /></p>
                     </div>
                     <div className="w-9/12 text-center">
-                        <h2 className="text-lg opacity-50">Total Payment History</h2>
+                        <h2 className="text-lg opacity-50">Payment History</h2>
                         <p className="text-2xl">{payments.length} </p>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ const MyDonation = () => {
                         <p className="px-4 py-3 bg-orange-400 rounded-lg shadow-lg font-bold text-2xl">$</p>
                     </div>
                     <div className="w-9/12 text-center">
-                        <h2 className="text-lg opacity-50">Total Payment Amount</h2>
+                        <h2 className="text-lg opacity-50">Total Payment</h2>
                         <p className="text-2xl">$ {totalPayment}.00 </p>
 
                     </div>
