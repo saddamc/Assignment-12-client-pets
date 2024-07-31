@@ -45,6 +45,7 @@ const DonationDetails = () => {
         setLoading(false)
       } 
     })
+
    
 
        // Form handler
@@ -59,6 +60,7 @@ const DonationDetails = () => {
     const note = form.note.value
     const Donate = form.Donate.value;
     const campaignId = campaign?._id;
+    const campaign_name = campaign?.campaign_name;
     const campaign_image = campaign?.pet_image;
     const status = "waiting for payment";
     const User = {
@@ -72,6 +74,7 @@ const DonationDetails = () => {
         note, 
         Donate,  
         campaignId,
+        campaign_name,
         campaign_image,
         status,
         User
@@ -86,7 +89,31 @@ const DonationDetails = () => {
       toast.error(err.message)
       setLoading(false)
     }
-  
+  }
+
+  const {data: progressData = [] } = useQuery({
+    queryKey: ['progress-stats'],
+    queryFn: async () => {
+      const {data} = await axiosSecure.get('/progress-stats');
+      return data;
+    }
+  })
+  console.log(progressData)
+
+
+  const matchingProgress = progressData.find(data => data?._id === campaign?._id)
+
+  const remainingDonate = matchingProgress && (campaign.maxDonation - matchingProgress.totalDonate);
+  console.log(remainingDonate)
+
+  const [donationAmount, setDonationAmount] = useState()
+
+  const handleMaxButton = () => {
+    setDonationAmount(remainingDonate)
+  }
+
+  const handleDonationChange = (e) => {
+    setDonationAmount(Math.min(e.target.value, remainingDonate))
   }
 
 
@@ -111,13 +138,16 @@ const DonationDetails = () => {
             </div>
                 <div className="flex gap-6  border-2 rounded-md ">
                     <div>
-                        <img src={campaign?.pet_image} className="w-[200px] h-[160px] rounded-md "  alt="" />
+                        <img src={campaign?.pet_image} className="w-[240px] h-[200px] rounded-md "  alt="" />
                     </div>
                     <div className="space-y-1 py-4">
                         <p className="font-bold"><span className="text-red-400">Campaign:</span> {campaign?.campaign_name} </p>
                         <p className="opacity-50">{campaign?.shortDescription} </p>
                         <p className="opacity-50">Last Date: {campaign?.lastDate} </p>
-                        <p className="font-extrabold "> <span className="text-red-400">Collection Target:</span> $ {campaign?.maxDonation}.00 </p>
+                        <p className="font-extrabold "> <span className="text-red-400">Funding Target:</span> $ {campaign?.maxDonation}.00 </p>
+                        <div>
+                          <p className="font-extrabold "> <span className="text-green-500">Donation collected:</span> $ {matchingProgress?.totalDonate}.00 </p>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -162,13 +192,17 @@ const DonationDetails = () => {
                 Donate Amount
               </label>
               <input
-                className='w-1/4 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
+                className='w-1/4 px-4 py-3 relative text-gray-800 border border-green-300 focus:outline-green-500  rounded-md '
                 type="number"
                 id="Donate"
                 name="Donate"
                 placeholder="$"
+                max={remainingDonate}
+                value={donationAmount}
+                onChange={handleDonationChange}
                 required
-              />
+              /> 
+                <button onClick={handleMaxButton} className="absolute pt-3.5 pb-3.5 -ml-10 z-10  rounded-md text-xs font-semibold">MAX</button>
             </div>
 
 

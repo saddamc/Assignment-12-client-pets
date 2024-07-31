@@ -88,7 +88,7 @@ const CheckoutForm = () => {
                         console.log('transaction id', paymentIntent.id);
                         setTransactionId(paymentIntent.id);
 
-                        // Save the payment in the database
+                        // Save the payment in the database 
                         const payment = {
                             email: user.email,
                             payment: totalDonate,
@@ -97,6 +97,7 @@ const CheckoutForm = () => {
                             donateIds: donate.map(item => item._id),
                             campaignIds: donate.map(item => item.campaignId),
                             note: donate.map(item => item.note || '').join(', '),
+                            campaignName: donate.map(item => item.campaign_name || '').join(', '),
                             status: 'success'
                         };
                         console.log(payment)

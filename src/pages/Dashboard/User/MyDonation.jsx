@@ -70,6 +70,12 @@ const MyDonation = () => {
                         scope='col'
                         className='px-5 py-3 bg-gray-300 border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                       >
+                        Campaign Name
+                      </th>
+                    <th
+                        scope='col'
+                        className='px-5 py-3 bg-gray-300 border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
+                      >
                         Date & Time
                       </th>
                     <th
@@ -108,6 +114,10 @@ const MyDonation = () => {
                       
                       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                         <p className='text-gray-900 whitespace-no-wrap font-bold'>{index + 1}</p>
+                      </td>
+
+                      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                        <p className='text-gray-900 whitespace-no-wrap font-bold'>{item?.campaignName}</p>
                       </td>
 
                       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>

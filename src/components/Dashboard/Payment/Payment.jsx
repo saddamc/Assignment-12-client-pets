@@ -21,7 +21,7 @@ const Payment = () => {
       return total + donateValue;
     }, 0);
     
-  
+      
   
     const handleDelete = id => {
       Swal.fire({
@@ -61,7 +61,7 @@ const Payment = () => {
             
         </div>
         {/* Fetch Donation Data */}
-        <div className='w-[750px]  mx-auto  px-4 sm:px-8'>
+        <div className='w-[850px]  mx-auto  px-4 sm:px-8'>
         <div>
           <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
             <div className='inline-block min-w-full shadow-lg rounded-lg overflow-hidden'>
@@ -73,6 +73,12 @@ const Payment = () => {
                       className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                     >
                       #
+                    </th>
+                    <th
+                      scope='col'
+                      className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
+                    >
+                      Campaign Name
                     </th>
                     <th
                         scope='col'
@@ -117,6 +123,12 @@ const Payment = () => {
                       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                         <p className='text-gray-900 whitespace-no-wrap font-bold'>{index + 1}</p>
                       </td>
+
+                      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                      <p className='text-gray-900 whitespace-no-wrap font-bold'>{item?.campaign_name
+                        }</p>
+                      </td>
+                      
                       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                       <div className='flex items-center'>
                         <div className='flex-shrink-0'>
@@ -131,7 +143,7 @@ const Payment = () => {
                       </div>
                     </td>
                       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                        <p className='text-gray-900 whitespace-no-wrap font-bold'>$ {item?.Donate}.00</p>
+                        <p className='text-gray-900 whitespace-no-wrap font-bold'>${item?.Donate}.00</p>
                       </td>
                       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                         <p className='text-gray-900 whitespace-no-wrap font-bold'>{item?.note}</p>
@@ -170,7 +182,7 @@ const Payment = () => {
 
 
 
-        <div className="mt-12 w-[680px] border-4 p-12 mb-12 mx-auto space-">
+        <div className="mt-12 w-[780px] border-4 p-12 mb-12 mx-auto space-">
            
                 <Elements stripe={stripePromise}>
                     <CheckoutForm />

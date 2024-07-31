@@ -25,6 +25,15 @@ const Donation = () => {
   })
   console.log(campaigns)
 
+  const {data: progressData = [] } = useQuery({
+    queryKey: ['progress-stats'],
+    queryFn: async () => {
+      const {data} = await axiosSecure.get('/progress-stats');
+      return data;
+    }
+  })
+  console.log(progressData)
+
     
   
     if (isLoading) return <LoadingSpinner />
@@ -86,7 +95,13 @@ const Donation = () => {
                         scope='col'
                         className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
                       >
-                          Campaign Target
+                          Target
+                      </th>
+                      <th
+                        scope='col'
+                        className='px-5 py-3 bg-gray-300  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold'
+                      >
+                          Donation
                       </th>
 
                       <th
@@ -109,7 +124,7 @@ const Donation = () => {
                   <tbody>{/* Campaign row data */}
                   {
                     campaigns.map((campaign, index) => (
-                        <DonationRow key={campaign._id} campaign={campaign} index={index} refetch={refetch} />
+                        <DonationRow key={campaign._id} campaign={campaign} index={index} refetch={refetch} progressData={progressData} />
                       ))
                   }
                   </tbody>
